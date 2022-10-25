@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/Menu.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="entete">
+        <h1>Bienvenue sur Amap Online</h1>
+    </div>
+
+    <div id="main">
+        <div id="contenu">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div id="footer">
+        &copy; @DateTime.Now.Year - Des courgettes sexy près de chez vous
+    </div>
+</body>
+</html>

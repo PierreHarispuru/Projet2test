@@ -1,0 +1,32 @@
+﻿@model Projet2.Models.Profil
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ModifierProfil</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>Modifier un profil : </legend>
+            @Html.LabelFor(m => Model.Nom)
+            @Html.TextBoxFor(m => Model.Nom)
+            @Html.ValidationMessageFor(m => Model.Nom)
+            <br />
+            @Html.LabelFor(m => Model.Age)
+            @Html.TextBoxFor(m => Model.Age)
+            @Html.ValidationMessageFor(m => Model.Age)
+            <br />@Html.LabelFor(m => Model.Benevole)
+            @Html.CheckBoxFor(m => Model.Benevole)
+            @Html.ValidationMessageFor(m => Model.Benevole)
+            <br />
+            <input type="submit" value="Modifier" />
+        </fieldset>
+    }
+
+</body>
+</html>
