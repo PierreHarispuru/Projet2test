@@ -29,32 +29,14 @@ namespace Projet2.Models
             _bddContext.Dispose();
         }
 
-        public int CreerProfil(string nom, string prenom, String typeP, string mail, int telephone, string addresse, int codepostal, Int64 siret, String nomentreprise)
+        public int CreerProfil(string nom, int age)
         {
-            if (typeP.Equals("Particulier"))
-            {
-                Particulier profil = new Particulier() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Addresse = addresse, Codepostal = codepostal };
-                _bddContext.Profils.Add(profil);
-                _bddContext.SaveChanges();
-                return profil.Id;
-            }
-            else if (typeP.Equals("Producteur"))
-            {
-                Producteur profil = new Producteur() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Addresse = addresse, Codepostal = codepostal };
-                _bddContext.Profils.Add(profil);
-                _bddContext.SaveChanges();
-                return profil.Id;
-            }
-            else
-            {
-                Entreprise profil = new Entreprise() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Addresse = addresse, Codepostal = codepostal, Siret = siret, NomEntreprise = nomentreprise };
-                _bddContext.Profils.Add(profil);
-                _bddContext.SaveChanges();
-                return profil.Id;
-            }
-
+            Profil profil = new Profil() { Nom = nom, Age=age, Benevole=false};
+            _bddContext.Profils.Add(profil);
+            _bddContext.SaveChanges();
+            return profil.Id;
         }
-        public void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string addresse, int codepostal)
+        public void ModifierProfil(int id, string Nom, int age)
         {
             Profil profil = _bddContext.Profils.Find(id);
 
