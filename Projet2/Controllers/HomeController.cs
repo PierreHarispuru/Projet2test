@@ -60,5 +60,10 @@ namespace Projet2.ViewModels
                 return View("Error");
             }
         }
+
+        //[httpGet]
+
+
+        //[HttpPost]
     }
 }
