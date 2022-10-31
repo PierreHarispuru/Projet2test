@@ -17,17 +17,27 @@ namespace Projet2.Models
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             this.Profils.AddRange(
-                new Profil
+                new Particulier
                 {
-                    Nom="Jean",
-                    Age=25,
-                    Benevole=true
+                    Nom="Dubois",
+                    Prenom="Jean",
+                    Mail="jeanjean@gmail.fr",
+                    Telephone=0102030405,
+                    Addresse="34 chemin du puis",
+                    Codepostal=75000,
+                    TypeP="Particulier"
                 },
-                new Profil
+                new Entreprise
                 {
-                    Nom = "Clem",
-                    Age = 52,
-                    Benevole=false
+                    Nom = "GRAKATA",
+                    Prenom = "Clem",
+                    Mail = "CLEM@meridian.com",
+                    Telephone = 0504030201,
+                    Addresse = "56 impasse de Mars",
+                    Codepostal = 69420,
+                    NomEntreprise = "Meridian",
+                    Siret=12345678912345,
+                    TypeP="Entreprise"
                 }
             );
             this.SaveChanges();
