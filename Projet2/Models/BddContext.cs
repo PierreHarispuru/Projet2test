@@ -24,7 +24,8 @@ namespace Projet2.Models
                     Mail="jeanjean@gmail.fr",
                     Telephone=0102030405,
                     Addresse="34 chemin du puis",
-                    Codepostal=75000
+                    Codepostal=75000,
+                    TypeP="Particulier"
                 },
                 new Entreprise
                 {
@@ -35,7 +36,8 @@ namespace Projet2.Models
                     Addresse = "56 impasse de Mars",
                     Codepostal = 69420,
                     NomEntreprise = "Meridian",
-                    Siret=12345678912345
+                    Siret=12345678912345,
+                    TypeP="Entreprise"
                 }
             );
             this.SaveChanges();
