@@ -29,32 +29,63 @@ namespace Projet2.Models
             _bddContext.Dispose();
         }
 
-        public int CreerProfil(string nom, string prenom, String typeP, string mail, int telephone, string addresse, int codepostal, Int64 siret, String nomentreprise)
+        public int CreerProfil(Profil profil)
         {
-            if (typeP.Equals("Particulier"))
-            {
-                Particulier profil = new Particulier() { Nom = nom, Prenom = prenom, TypeP=typeP, Mail=mail, Telephone=telephone, Addresse=addresse, Codepostal=codepostal};
+                //Profil profil = new Profil() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Addresse = addresse, Codepostal = codepostal };
+                _bddContext.Profils.Add(profil);
+                _bddContext.SaveChanges();
+                return profil.Id;
+            
+        }
+
+        public int CreerParticulier(int profilId)
+        {
+            Particulier p = new Particulier { ProfilId = profilId };
+            _bddContext.Particuliers.Add(p);
+            _bddContext.SaveChanges();
+            return p.Id;
+        }
+        public int CreerProducteur(int profilId)
+        {
+            Producteur p = new Producteur { ProfilId = profilId };
+            _bddContext.Producteurs.Add(p);
+            _bddContext.SaveChanges();
+            return p.Id;
+        }
+        public int CreerEntreprise(int profilId, string nomentreprise, Int64 siret)
+        {
+            Entreprise e = new Entreprise { ProfilId = profilId, NomEntreprise=nomentreprise,Siret=siret };
+            _bddContext.Entreprises.Add(e);
+            _bddContext.SaveChanges();
+            return e.Id;
+        }
+
+        public int CreerProfil(string nom, string prenom, string mail, int telephone, string adresse, int codepostal, Int64 siret, String nomentreprise)
+        {
+            return 0;
+            /*{
+                Particulier profil = new Particulier() { Nom = nom, Prenom = prenom, TypeP=typeP, Mail=mail, Telephone=telephone, Adresse=adresse, Codepostal=codepostal};
                 _bddContext.Profils.Add(profil);
                 _bddContext.SaveChanges();
                 return profil.Id;
             }
             else if(typeP.Equals("Producteur"))
             {
-                Producteur profil = new Producteur() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Addresse = addresse, Codepostal = codepostal };
+                Producteur profil = new Producteur() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Adresse = adresse, Codepostal = codepostal };
                 _bddContext.Profils.Add(profil);
                 _bddContext.SaveChanges();
                 return profil.Id;
             }
             else
             {
-                Entreprise profil = new Entreprise() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Addresse = addresse, Codepostal = codepostal, Siret=siret, NomEntreprise=nomentreprise };
+                Entreprise profil = new Entreprise() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Adresse = adresse, Codepostal = codepostal, Siret=siret, NomEntreprise=nomentreprise };
                 _bddContext.Profils.Add(profil);
                 _bddContext.SaveChanges();
                 return profil.Id;
-            }
+            }*/
            
         }
-        public void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string addresse, int codepostal)
+        public void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string adresse, int codepostal)
         {
             Profil profil = _bddContext.Profils.Find(id);
 
@@ -64,7 +95,7 @@ namespace Projet2.Models
                 profil.Prenom = prenom;
                 profil.Mail = mail;
                 profil.Telephone = telephone;
-                profil.Addresse = addresse;
+                profil.Adresse = adresse;
                 profil.Codepostal = codepostal;
                 _bddContext.SaveChanges();
             }

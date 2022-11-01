@@ -6,6 +6,11 @@ namespace Projet2.Models
     public class BddContext : DbContext
     {
         public DbSet<Profil> Profils { get; set; }
+        public DbSet<Entreprise> Entreprises { get; set; }
+        public DbSet<Producteur> Producteurs { get; set; }
+        public DbSet<Particulier> Particuliers { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -17,27 +22,55 @@ namespace Projet2.Models
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             this.Profils.AddRange(
+                new Profil
+                {
+                    Nom = "Contact",
+                    Prenom = "Jean",
+                    Mail = "jeanjean@entreprise.com",
+                    Telephone = 0102030405,
+                    Adresse = "34 chemin du puis",
+                    Codepostal = 75000,
+                    Id = 1
+                },
+                new Profil
+                {
+                    Nom = "LeProd",
+                    Prenom = "Mylene",
+                    Mail = "mymy@gmail.fr",
+                    Telephone = 0405060708,
+                    Adresse = "648 rue de la paix",
+                    Codepostal = 75009,
+                    Id = 2
+                },
+                new Profil
+                {
+                    Nom = "Lachat",
+                    Prenom = "georges",
+                    Mail = "george@gmail.fr",
+                    Telephone = 0607080910,
+                    Adresse = "58 rue de chez george",
+                    Codepostal = 75002,
+                    Id = 3
+                }
+            );
+            this.Producteurs.AddRange(
+                new Producteur
+                {
+                    ProfilId = 2
+                }
+            );
+            this.Particuliers.AddRange(
                 new Particulier
                 {
-                    Nom="Dubois",
-                    Prenom="Jean",
-                    Mail="jeanjean@gmail.fr",
-                    Telephone=0102030405,
-                    Addresse="34 chemin du puis",
-                    Codepostal=75000,
-                    TypeP="Particulier"
-                },
+                    ProfilId = 3
+                }
+            );
+            this.Entreprises.AddRange(
                 new Entreprise
                 {
-                    Nom = "GRAKATA",
-                    Prenom = "Clem",
-                    Mail = "CLEM@meridian.com",
-                    Telephone = 0504030201,
-                    Addresse = "56 impasse de Mars",
-                    Codepostal = 69420,
                     NomEntreprise = "Meridian",
                     Siret=12345678912345,
-                    TypeP="Entreprise"
+                    ProfilId=1
                 }
             );
             this.SaveChanges();

@@ -14,7 +14,7 @@ namespace Projet2.ViewModels
     {
         public IActionResult Index()
         {
-            Profil profil = new Profil {  };
+            Profil profil = new Profil { };
 
             HomeViewModel hvm = new HomeViewModel
             {
@@ -58,11 +58,6 @@ namespace Projet2.ViewModels
         }
 
         public IActionResult SeConnecter()
-        {
-            return View();
-        }
-
-        public IActionResult SignIn()
         {
             return View();
         }
@@ -113,6 +108,42 @@ namespace Projet2.ViewModels
             {
                 return View("Error");
             }
+        }
+
+        [HttpGet]
+        public IActionResult SignIn ()
+        {
+            
+            using (IDal dal = new Dal())
+            {
+                return View("SignIn");
+            }
+ 
+        }
+
+        [HttpPost]
+        public IActionResult SignIn(Profil profil, int inscriptiongroup, string entreprise, Int64 siret)
+        {
+            if (!ModelState.IsValid)
+            return View(profil);
+
+                using (Dal dal = new Dal())
+                {
+                int profilId=dal.CreerProfil(profil);
+                if (inscriptiongroup == 1)
+                {
+                    dal.CreerParticulier(profilId);
+                }
+                if (inscriptiongroup == 2)
+                {
+                    dal.CreerEntreprise(profilId, entreprise, siret);
+                }
+                if (inscriptiongroup == 3)
+                {
+                    dal.CreerProducteur(profilId);
+                }
+                return View("SuccessSignIn");
+                }
         }
     }
 }
