@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 *@
+@model Projet2.Models.Profil
 @{
     Layout = "_Layout";
     ViewBag.Title = "Accueil";
@@ -10,15 +11,16 @@
 <!DOCTYPE html>
 <html>
 <body>
+    @using (Html.BeginForm()){
     <fieldset>
         <legend>Création de compte AMAP-Online</legend>
         <table>
             <tbody>
                 <tr>
                     <td>Êtes-vous :</td>
-                    <td><label for="particulier">Particulier</label><input type="radio" name="inscriptiongroup" value="1" id="particulier"></td>
-                    <td><label for="ce">Comité d'entreprise</label><input type="radio" name="inscriptiongroup" value="2" id="ce"></td>
-                    <td><label for="producteur">Producteur</label><input type="radio" name="inscriptiongroup" value="3" id="producteur"></td>
+                    <td><input checked="checked" type="radio" name="inscriptiongroup" value="1" id="particulier"><label for="particulier">Particulier</label></td>
+                    <td><input type="radio" name="inscriptiongroup" value="2" id="ce"><label for="ce">Comité d'entreprise</label></td>
+                    <td><input type="radio" name="inscriptiongroup" value="3" id="producteur"><label for="producteur">Producteur</label></td>
                 </tr>
             </tbody>
         </table>
@@ -27,37 +29,59 @@
                 <form method="POST">
                 <tr>
                     <div>
-                    <td><label for="nom">Nom</label></td>
-                    <td><input id="nom" type="text"></td>
+                    <td>@Html.LabelFor(m => Model.Prenom)</td>
+                    <td>@Html.TextBoxFor(m => Model.Prenom)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Prenom)</td>
                     </div>
                 </tr>
                 <tr>
                     <div>
-                    <td><label for="prenom">Prénom</label></td>
-                    <td><input id="prenom" type="text"></td>
+                    <td>@Html.LabelFor(m => Model.Nom)</td>
+                    <td>@Html.TextBoxFor(m => Model.Nom)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Nom)</td>
                     </div>
                 </tr>
                 <tr>
                     <div>
-                    <td><label for="email">Adresse mail</label></td>
-                    <td><input id="email" type="email"></td>
+                    <td>@Html.LabelFor(m => Model.Mail)</td>
+                    <td>@Html.TextBoxFor(m => Model.Mail)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Mail)</td>
                     </div>
                 </tr>
                 <tr>
                     <div>
-                    <td><label for="adressepostale">Adresse postale</label></td>
-                    <td><input id="adressePostale" type="text"></td>
+                    <td>@Html.LabelFor(m => Model.Adresse)</td>
+                    <td>@Html.TextBoxFor(m => Model.Adresse)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Adresse)</td>
                     </div>
                 </tr>
                 <tr>
                     <div>
-                    <td><label for="codepostal">Code postal</label></td>
-                    <td>
-                        <input id="email" type="number">
-                    </td>
+                    <td>@Html.LabelFor(m => Model.Codepostal)</td>
+                    <td>@Html.TextBoxFor(m => Model.Codepostal, new { type="number", min="0", max="100000" })</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Codepostal)</td>
                     </div>
                 </tr>
                 <tr>
+                    <div>
+                    <td>@Html.LabelFor(m => Model.Telephone)</td>
+                    <td>@Html.TextBoxFor(m => Model.Telephone, new { type="number", min="0", max="10000000000" })</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Telephone)</td>
+                    </div>
+                </tr>
+                <tr>
+                    <div>
+                    <td><label for="entreprise">Nom de votre entreprise</label></td>
+                    <td><input type="text" id="entreprise" name="entreprise"></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div>
+                    <td><label for="siret">Numéro SIRET</label></td>
+                    <td><input type="number" id="siret" name="siret"></td>
+                    </div>
+                </tr>
+                <!--<tr>
                     <div>
                     <td><label for="mdp">Créer un mot de passe</label></td>
                     <td><input type="password"></td>
@@ -68,12 +92,12 @@
                     <td><label for="confirmationmdp">Confirmer le mot de passe</label></td>
                     <td><input type="password"></td>
                     </div>
-                </tr>
+                </tr> -->
                 </form>
             </tbody>
         </table>
         <input type="submit" value="Envoyer le formulaire d'inscription">
-    </fieldset>
+    </fieldset>}
 </body>
 </html>
 
