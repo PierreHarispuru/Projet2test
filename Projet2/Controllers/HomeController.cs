@@ -62,11 +62,6 @@ namespace Projet2.ViewModels
             return View();
         }
 
-        public IActionResult SignIn()
-        {
-            return View();
-        }
-
         public IActionResult PanierCommande()
         {
             return View();
