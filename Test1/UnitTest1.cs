@@ -11,19 +11,20 @@ namespace Test1
         public void Creation_Profil_Verification()
         {
             // Nous supprimons la base si elle existe puis nous la créons
-            using (Dal dal = new Dal())
+            using (BddContext ctx = new BddContext())
             {
                 // Nous supprimons et créons la db avant le test
-                dal.DeleteCreateDatabase();
+                ctx.InitializeDb();
                 // Nous créons un profil
-                dal.CreerProfil("Jean", 18);
 
                 // Nous vérifions que le profil a bien été créé
-                List<Profil> profil = dal.ObtientTousLesProfils();
-                Assert.NotNull(profil);
-                Assert.Single(profil);
-                Assert.Equal("Jean", profil[0].Nom);
-                Assert.Equal(18, profil[0].Age);
+                using (Dal dal = new Dal())
+                {
+                    List<Profil> profil = dal.ObtientTousLesProfils();
+                    Assert.NotNull(profil);
+                    Assert.Single(profil);
+                    Assert.Equal("Jean", profil[0].Prenom);
+                }
             }
         }
     }
