@@ -4,7 +4,7 @@
 *@
 @{
     Layout = "_Layout";
-    ViewBag.Title = "Accueil";
+    ViewBag.Title = "S'inscrire";
 }
 
 <!DOCTYPE html>
@@ -72,8 +72,10 @@
                 </form>
             </tbody>
         </table>
+        <br />
         <input type="submit" value="Envoyer le formulaire d'inscription">
+        <br>
     </fieldset>
+    <div>@Html.ActionLink("Déjà inscrit ? Veuillez vous connecter en cliquant ici", "SeConnecter")</div>
 </body>
 </html>
-

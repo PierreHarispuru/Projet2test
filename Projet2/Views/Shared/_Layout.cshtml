@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>
 
 <html>
 
@@ -26,14 +26,52 @@
 
     <div id="main">
         <div id="contenu">
-            
-            <img src="~/wwwroot/Images/pieroach.png" />
-            @RenderBody()
+            ****ici t'es censé avoir le RenderBody()*********
         </div>
     </div>
 
     <div id="footer">
         &copy; @DateTime.Now.Year - Des courgettes sexy près de chez vous
+    </div>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/Menu.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="entete">
+        <h1>Bienvenue sur le site AMAP-Online</h1>
+    </div>
+
+    <div id="main">
+        <div>
+            
+                @Html.ActionLink("Accueil", "Index")
+                @Html.ActionLink("Évènement à venir", "Evenement")
+                @Html.ActionLink("Adhérer", "Adherer")
+                @Html.ActionLink("Paniers de la semaine", "PanierDeLaSemaine")
+                @Html.ActionLink("FAQ", "Faq")
+                @Html.ActionLink("Nous contacter", "Contact")
+                @Html.ActionLink("Se connecter", "SeConnecter")
+                @Html.ActionLink("Créer un compte", "SignIn")
+                @Html.ActionLink("Votre Panier", "PanierCommande")
+                @Html.ActionLink("Création de panier", "ProducteurCreationPanier")
+            
+        </div>
+
+        <div id="contenu">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div id="footer">
+        &copy; @DateTime.Now.Year - De magnifiques courgettes tout près de chez vous
     </div>
 </body>
 </html>

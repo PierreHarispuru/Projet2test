@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Title = "Se connecter";
+}
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Connexion : </legend>
+            <table>
+                <tr>
+                    <td>@Html.Label("Login : ")</td>
+                    <td>@Html.TextBox("Login")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Mot de passe : ")</td>
+                    <td>@Html.TextBox("MDP")</td>
+                </tr>
+            </table>
+        <br>
+        <input type="submit" value="Se Connecter..." />
+        <br>
+    </fieldset>
+    <div>@Html.ActionLink("Pas encore inscrit ? Veuillez créer un compte en cliquant ici", "SignIn")</div>
+}
+

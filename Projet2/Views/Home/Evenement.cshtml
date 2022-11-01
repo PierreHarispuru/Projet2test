@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Title = " Évènement à venir";
+}
+
+<div id="contenu">
+    <h3 class="titre">Planning des évènements</h3>
+</div>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nom de l'évènement</th>
+            <th>Date</th>
+            <th>Lieu</th>
+            <th>Nombre d'inscrits</th>
+            <th>Participer</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.NomEvenement</td>
+            <td>@item.DateEvenement</td>
+            <td>@item.LieuEvenement</td>
+            <td>@item.NbParticipantEvenement</td>
+            <td>@item.ParticipeOuPas</td>
+        </tr>
+    }
+
+
+    </tbody>
+
+</table>
