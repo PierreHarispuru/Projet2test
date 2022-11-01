@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Création de Panier";
+}
+
+<h4>Veuillez fournir une description détaillée pour nos fidèles adhérents d'AMAP Online</h4>
+<fieldset>
+    <legend>Création de panier : </legend>
+    <table>
+        <tr>
+            <td>@Html.Label("Ville ")</td>
+            <td>@Html.TextBox("Ville")</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Descriptif du panier :")</td>
+            <td>@Html.TextArea("Descriptif du panier")</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Prix global ")</td>
+            <td>@Html.TextBox("Prix")</td>
+        </tr>
+    </table>
+    <br>
+    <input type="submit" value="Mettre en ligne le panier" />
+    <br>
+</fieldset>

@@ -5,7 +5,7 @@
 @model Projet2.Models.Profil
 @{
     Layout = "_Layout";
-    ViewBag.Title = "Accueil";
+    ViewBag.Title = "S'inscrire";
 }
 
 <!DOCTYPE html>
@@ -81,23 +81,14 @@
                     <td><input type="number" id="siret" name="siret"></td>
                     </div>
                 </tr>
-                <!--<tr>
-                    <div>
-                    <td><label for="mdp">Créer un mot de passe</label></td>
-                    <td><input type="password"></td>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                    <td><label for="confirmationmdp">Confirmer le mot de passe</label></td>
-                    <td><input type="password"></td>
-                    </div>
-                </tr> -->
+               
                 </form>
             </tbody>
         </table>
+        <br />
         <input type="submit" value="Envoyer le formulaire d'inscription">
+        <br>
     </fieldset>}
+    <div>@Html.ActionLink("Déjà inscrit ? Veuillez vous connecter en cliquant ici", "SeConnecter")</div>
 </body>
 </html>
-

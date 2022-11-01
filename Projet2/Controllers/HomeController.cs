@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Web;
 
 namespace Projet2.ViewModels
 {
@@ -21,6 +24,57 @@ namespace Projet2.ViewModels
             };
 
             return View(hvm);
+        }
+
+        public IActionResult Evenement()
+        {
+            List<Evenement> evenements = new List<Evenement>()
+        {
+            new Evenement{Id = 1, NomEvenement="Nom1", DateEvenement=new DateTime(21/11/2022) ,LieuEvenement="Lieu1", NbParticipantEvenement=11, ParticipeOuPas=true},
+            new Evenement{Id = 2, NomEvenement="Nom2", DateEvenement=new DateTime(15/11/2022), LieuEvenement="Lieu2", NbParticipantEvenement=10, ParticipeOuPas=false},
+            new Evenement{Id = 3, NomEvenement="Nom3", DateEvenement=new DateTime(25/12/2022), LieuEvenement="Lieu3", NbParticipantEvenement=15, ParticipeOuPas=true}
+        };
+
+            return View(evenements);
+        }
+
+        public IActionResult Adherer()
+        {
+            return View();
+        }
+
+        public IActionResult PanierDeLaSemaine()
+        {
+            return View();
+        }
+        public IActionResult Faq()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult SeConnecter()
+        {
+            return View();
+        }
+
+        public IActionResult SignIn()
+        {
+            return View();
+        }
+
+        public IActionResult PanierCommande()
+        {
+            return View();
+        }
+
+        public IActionResult ProducteurCreationPanier()
+        {
+            return View();
         }
 
         [HttpGet]
