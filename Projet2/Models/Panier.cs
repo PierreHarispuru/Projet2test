@@ -12,9 +12,9 @@ namespace Projet2.Models
         [Display(Name = "Qté")]
         public int QuantitePanier { get; set; }
         [Display(Name = "Description des produits")]
-        public string description { get; set; }
-        public string lienImage { get; set; }
+        public string Description { get; set; }
+        public string LienImage { get; set; }
         [Display(Name = "Prix (€)")]
-        public double prix { get; set; }
+        public double Prix { get; set; }
     }
 }

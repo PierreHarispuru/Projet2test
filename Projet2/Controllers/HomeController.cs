@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
@@ -49,6 +51,10 @@ namespace Projet2.ViewModels
 
         public IActionResult PanierDeLaSemaine()
         {
+            using (Dal dal = new Dal())
+            {
+                ViewData["Profils"] = dal._bddContext.Profils;
+            }
             return View();
         }
         public IActionResult Faq()
@@ -71,12 +77,98 @@ namespace Projet2.ViewModels
 
                 return View();
         }
+        
 
-        public IActionResult ProducteurCreationPanier()
+        [HttpGet]
+        public IActionResult SignIn ()
         {
-            return View();
+            
+            using (IDal dal = new Dal())
+            {
+                return View("SignIn");
+            }
+ 
         }
 
+        [HttpPost]
+        public IActionResult SignIn(Profil profil, int inscriptiongroup, string entreprise, Int64 siret)
+        {
+            if (!ModelState.IsValid)
+            return View(profil);
+
+                using (Dal dal = new Dal())
+                {
+                int profilId=dal.CreerProfil(profil);
+                if (inscriptiongroup == 1)
+                {
+                    dal.CreerParticulier(profilId);
+                }
+                if (inscriptiongroup == 2)
+                {
+                    dal.CreerEntreprise(profilId, entreprise, siret);
+                }
+                if (inscriptiongroup == 3)
+                {
+                    dal.CreerProducteur(profilId);
+                }
+                return View("SuccessSignIn");
+                }
+        }
+
+        
+        [HttpGet]
+        public IActionResult ProducteurCreationPanier()
+        {
+
+            using (IDal dal = new Dal())
+            {
+                return View("ProducteurCreationPanier");
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult ProducteurCreationPanier(Panier panier, IFormFile PhotoPanier)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+//A MODIFIER SELON LOGIN
+            panier.ProdId = 1;
+            
+
+            using(Dal dal=new Dal())
+            {
+                if (PhotoPanier != null)
+                {
+                    UploadFile(PhotoPanier);
+                    panier.LienImage = "/Images/Users/" + PhotoPanier.FileName;
+                }
+
+                dal.CreerPanier(panier);
+
+                return View("SuccessPanier");
+            }
+        }
+
+        private bool UploadFile(IFormFile iFormFile)
+        {
+            if (iFormFile == null || iFormFile.Length == 0)
+                return false;
+            var filePath = _env.WebRootPath + "/Images/Users/" + iFormFile.FileName;
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                iFormFile.CopyTo(stream);
+            }
+            return true;
+        }
+        private readonly IWebHostEnvironment _env;
+        public HomeController(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
+
+        /*
         [HttpGet]
         public IActionResult ModifierProfil(int id)
         {
@@ -113,59 +205,6 @@ namespace Projet2.ViewModels
             {
                 return View("Error");
             }
-        }
-
-        [HttpGet]
-        public IActionResult SignIn ()
-        {
-            
-            using (IDal dal = new Dal())
-            {
-                return View("SignIn");
-            }
- 
-        }
-
-        //[HttpGet]
-        //public IActionResult ProducteurCreationPanier()
-        //{
-
-            //using (IDal dal = new Dal())
-            //{
-                //return View("ProducteurCreationPanier");
-            //}
-
-        //}
-
-        //[HttpPost]
-        //public IActionResult ProducteurCreationPanier(IFormFile iFormFile)
-        //{
-            //return View("Error");
-        //}
-
-        [HttpPost]
-        public IActionResult SignIn(Profil profil, int inscriptiongroup, string entreprise, Int64 siret)
-        {
-            if (!ModelState.IsValid)
-            return View(profil);
-
-                using (Dal dal = new Dal())
-                {
-                int profilId=dal.CreerProfil(profil);
-                if (inscriptiongroup == 1)
-                {
-                    dal.CreerParticulier(profilId);
-                }
-                if (inscriptiongroup == 2)
-                {
-                    dal.CreerEntreprise(profilId, entreprise, siret);
-                }
-                if (inscriptiongroup == 3)
-                {
-                    dal.CreerProducteur(profilId);
-                }
-                return View("SuccessSignIn");
-                }
-        }
+        }*/
     }
 }

@@ -19,7 +19,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Views\Login\" />
-	  <Folder Include="wwwroot\Images\" />
+	  <Folder Include="wwwroot\Images\Users\" />
 	</ItemGroup>
 
 </Project>

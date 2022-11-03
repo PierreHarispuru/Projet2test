@@ -4,6 +4,7 @@
     Layout = "_Layout";
     ViewBag.Title = "Création de Panier";
 }
+@model Projet2.Models.Panier
 
 <h4>Veuillez fournir une description détaillée pour nos fidèles adhérents d'AMAP Online</h4>
 <form action="" method="post" enctype="multipart/form-data">
@@ -11,24 +12,27 @@
     <legend>Création de panier : </legend>
     <table>
         <tr>
-            <label for="file">Votre panier en photo : </label>
-            <input type="file"/>
-
+                <label for="file">Votre panier en photo : </label>
+                <input type="file" name="PhotoPanier" id="PhotoPanier"/>
         </tr>
         <tr>
-            <td>@Html.Label("Ville ")</td>
-            <td>@Html.TextBox("Ville")</td>
+                <td>@Html.LabelFor(m => m.QuantitePanier)</td>
+                <td>@Html.TextBoxFor(m => m.QuantitePanier, new { type="number", min="0"})</td>
+                <td>@Html.ValidationMessageFor(m => m.QuantitePanier)</td>
         </tr>
         <tr>
-            <td>@Html.Label("Descriptif du panier :")</td>
-            <td>@Html.TextArea("Descriptif du panier")</td>
+                <td>@Html.LabelFor(m => m.Description)</td>
+                <td>@Html.TextBoxFor(m => m.Description)</td>
+                <td>@Html.ValidationMessageFor(m => m.Description)</td>
         </tr>
         <tr>
-            <td>@Html.Label("Prix global ")</td>
-            <td>@Html.TextBox("Prix")</td>
+                <td>@Html.LabelFor(m => m.Prix)</td>
+                <td>@Html.TextBoxFor(m => m.Prix, new { type="number", min="0"})</td>
+                <td>@Html.ValidationMessageFor(m => m.Prix)</td>
         </tr>
     </table>
     <br>
     <input type="submit" value="Mettre en ligne le panier" />
     <br>
 </fieldset>
+</form>
