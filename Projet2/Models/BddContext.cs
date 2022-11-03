@@ -9,7 +9,7 @@ namespace Projet2.Models
         public DbSet<Entreprise> Entreprises { get; set; }
         public DbSet<Producteur> Producteurs { get; set; }
         public DbSet<Particulier> Particuliers { get; set; }
-
+        public DbSet<Panier> Paniers { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -71,6 +71,16 @@ namespace Projet2.Models
                     NomEntreprise = "Meridian",
                     Siret=12345678912345,
                     ProfilId=1
+                }
+            );
+            this.Paniers.AddRange(
+                new Panier
+                {
+                    QuantitePanier=3,
+                    ProdId=1,
+                    Prix=28,
+                    Description="Trois patates et deux carottes",
+                    LienImage="/Panier1.png"
                 }
             );
             this.SaveChanges();

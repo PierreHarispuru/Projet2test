@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Projet2.Models.Profil
+@{
     Layout = "_Layout";
     ViewBag.Title = "Paniers de la semaine";
 }
@@ -8,3 +9,10 @@
             <h3 class="titre">En vedette cette semaine</h3>
             <p class="contenu">Proposés par nos meilleurs producteurs locaux</p>
         </div>
+        @*using(Projet2.Models.Dal dal =new Projet2.Models.Dal())
+        {
+    @foreach (Projet2.Models.Profil profil in ViewData["Profils"] as List<Projet2.Models.Profil> )
+        {
+            <div>youhou</div>
+        }
+        }*@

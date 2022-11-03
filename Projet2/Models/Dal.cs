@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,7 +8,7 @@ namespace Projet2.Models
 {
     public class Dal : IDal
     {
-        private BddContext _bddContext;
+        public BddContext _bddContext;
         public Dal()
         {
             _bddContext = new BddContext();
@@ -31,7 +32,7 @@ namespace Projet2.Models
 
         public int CreerProfil(Profil profil)
         {
-                //Profil profil = new Profil() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Addresse = addresse, Codepostal = codepostal };
+               
                 _bddContext.Profils.Add(profil);
                 _bddContext.SaveChanges();
                 return profil.Id;
@@ -60,32 +61,14 @@ namespace Projet2.Models
             return e.Id;
         }
 
-        public int CreerProfil(string nom, string prenom, string mail, int telephone, string adresse, int codepostal, Int64 siret, String nomentreprise)
+        public int CreerPanier(Panier panier)
         {
-            return 0;
-            /*{
-                Particulier profil = new Particulier() { Nom = nom, Prenom = prenom, TypeP=typeP, Mail=mail, Telephone=telephone, Adresse=adresse, Codepostal=codepostal};
-                _bddContext.Profils.Add(profil);
-                _bddContext.SaveChanges();
-                return profil.Id;
-            }
-            else if(typeP.Equals("Producteur"))
-            {
-                Producteur profil = new Producteur() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Adresse = adresse, Codepostal = codepostal };
-                _bddContext.Profils.Add(profil);
-                _bddContext.SaveChanges();
-                return profil.Id;
-            }
-            else
-            {
-                Entreprise profil = new Entreprise() { Nom = nom, Prenom = prenom, TypeP = typeP, Mail = mail, Telephone = telephone, Adresse = adresse, Codepostal = codepostal, Siret=siret, NomEntreprise=nomentreprise };
-                _bddContext.Profils.Add(profil);
-                _bddContext.SaveChanges();
-                return profil.Id;
-            }*/
-           
+            _bddContext.Paniers.Add(panier);
+            _bddContext.SaveChanges();
+            return panier.Id;
         }
-        public void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string adresse, int codepostal)
+
+        /*public void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string adresse, int codepostal)
         {
             Profil profil = _bddContext.Profils.Find(id);
 
@@ -105,6 +88,6 @@ namespace Projet2.Models
         {
             _bddContext.Profils.Update(profil);
             _bddContext.SaveChanges();
-        }
+        }*/
     }
 }

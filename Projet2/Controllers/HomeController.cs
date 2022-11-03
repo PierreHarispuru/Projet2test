@@ -1,10 +1,13 @@
 ﻿
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -45,6 +48,10 @@ namespace Projet2.ViewModels
 
         public IActionResult PanierDeLaSemaine()
         {
+            using (Dal dal = new Dal())
+            {
+                ViewData["Profils"] = dal._bddContext.Profils;
+            }
             return View();
         }
         public IActionResult Faq()
@@ -66,49 +73,7 @@ namespace Projet2.ViewModels
         {
             return View();
         }
-
-        public IActionResult ProducteurCreationPanier()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult ModifierProfil(int id)
-        {
-            if (id != 0)
-            {
-                using (IDal dal = new Dal())
-                {
-                    Profil profil = dal.ObtientTousLesProfils().Where(r => r.Id == id).FirstOrDefault();
-                    if (profil == null)
-                    {
-                        return View("Error");
-                    }
-                    return View(profil);
-                }
-            }
-            return View("Error");
-        }
-
-        [HttpPost]
-        public IActionResult ModifierProfil(Profil profil)
-        {
-            if (!ModelState.IsValid)
-                return View(profil);
-
-            if (profil.Id != 0)
-            {
-                using (Dal dal = new Dal())
-                {
-                    dal.ModifierProfil(profil);
-                    return RedirectToAction("ModifierProfil", new { @id = profil.Id });
-                }
-            }
-            else
-            {
-                return View("Error");
-            }
-        }
+        
 
         [HttpGet]
         public IActionResult SignIn ()
@@ -145,5 +110,97 @@ namespace Projet2.ViewModels
                 return View("SuccessSignIn");
                 }
         }
+
+        
+        [HttpGet]
+        public IActionResult ProducteurCreationPanier()
+        {
+
+            using (IDal dal = new Dal())
+            {
+                return View("ProducteurCreationPanier");
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult ProducteurCreationPanier(Panier panier, IFormFile PhotoPanier)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+//A MODIFIER SELON LOGIN
+            panier.ProdId = 1;
+            
+
+            using(Dal dal=new Dal())
+            {
+                if (PhotoPanier != null)
+                {
+                    UploadFile(PhotoPanier);
+                    panier.LienImage = "/Images/Users/" + PhotoPanier.FileName;
+                }
+
+                dal.CreerPanier(panier);
+
+                return View("SuccessPanier");
+            }
+        }
+
+        private bool UploadFile(IFormFile iFormFile)
+        {
+            if (iFormFile == null || iFormFile.Length == 0)
+                return false;
+            var filePath = _env.WebRootPath + "/Images/Users/" + iFormFile.FileName;
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                iFormFile.CopyTo(stream);
+            }
+            return true;
+        }
+        private readonly IWebHostEnvironment _env;
+        public HomeController(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
+
+        /*
+        [HttpGet]
+        public IActionResult ModifierProfil(int id)
+        {
+            if (id != 0)
+            {
+                using (IDal dal = new Dal())
+                {
+                    Profil profil = dal.ObtientTousLesProfils().Where(r => r.Id == id).FirstOrDefault();
+                    if (profil == null)
+                    {
+                        return View("Error");
+                    }
+                    return View(profil);
+                }
+            }
+            return View("Error");
+        }
+
+        [HttpPost]
+        public IActionResult ModifierProfil(Profil profil)
+        {
+            if (!ModelState.IsValid)
+                return View(profil);
+
+            if (profil.Id != 0)
+            {
+                using (Dal dal = new Dal())
+                {
+                    dal.ModifierProfil(profil);
+                    return RedirectToAction("ModifierProfil", new { @id = profil.Id });
+                }
+            }
+            else
+            {
+                return View("Error");
+            }
+        }*/
     }
 }
