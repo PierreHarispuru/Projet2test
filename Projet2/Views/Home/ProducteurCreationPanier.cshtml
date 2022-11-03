@@ -1,13 +1,20 @@
 ﻿
+
 @{
     Layout = "_Layout";
     ViewBag.Title = "Création de Panier";
 }
 
 <h4>Veuillez fournir une description détaillée pour nos fidèles adhérents d'AMAP Online</h4>
+<form action="" method="post" enctype="multipart/form-data">
 <fieldset>
     <legend>Création de panier : </legend>
     <table>
+        <tr>
+            <label for="file">Votre panier en photo : </label>
+            <input type="file"/>
+
+        </tr>
         <tr>
             <td>@Html.Label("Ville ")</td>
             <td>@Html.TextBox("Ville")</td>

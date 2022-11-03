@@ -22,8 +22,4 @@
 	  <Folder Include="wwwroot\Images\" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Include="wwwroot\Images\pieroach.png" />
-	</ItemGroup>
-
 </Project>

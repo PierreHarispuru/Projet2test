@@ -6,21 +6,26 @@
 @using (Html.BeginForm())
 {
     <fieldset>
-        <legend>Connexion : </legend>
-            <table>
-                <tr>
-                    <td>@Html.Label("Login : ")</td>
-                    <td>@Html.TextBox("Login")</td>
-                </tr>
-                <tr>
-                    <td>@Html.Label("Mot de passe : ")</td>
-                    <td>@Html.TextBox("MDP")</td>
-                </tr>
-            </table>
-        <br>
-        <input type="submit" value="Se Connecter..." />
-        <br>
+        <div class="col-md-6 offset-md-3">
+        <legend>Connexion</legend>
+
+        <form action="/action_page.php">
+
+            <div class="mb-3 mt-3">
+                <label for="email" class="form-label">@Html.Label("Email")</label>
+                <input type="email" class="form-control" id="login" placeholder="Entrer votre adresse mail" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="motdepasse" class="form-label">@Html.Label("Mot de passe")</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Entrer votre mot de passe" name="motdepasse">
+            </div>
+
+            </form>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <div>@Html.ActionLink("Pas encore inscrit ? Veuillez créer un compte en cliquant ici", "SignIn")</div>
+        </div>
     </fieldset>
-    <div>@Html.ActionLink("Pas encore inscrit ? Veuillez créer un compte en cliquant ici", "SignIn")</div>
+   
 }
 
