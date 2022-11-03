@@ -1,17 +1,21 @@
 ﻿
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Web;
 
 namespace Projet2.ViewModels
 {
     public class HomeController : Controller
     {
+
         public IActionResult Index()
         {
             Profil profil = new Profil { };
@@ -64,7 +68,8 @@ namespace Projet2.ViewModels
 
         public IActionResult PanierCommande()
         {
-            return View();
+
+                return View();
         }
 
         public IActionResult ProducteurCreationPanier()
@@ -120,6 +125,23 @@ namespace Projet2.ViewModels
             }
  
         }
+
+        //[HttpGet]
+        //public IActionResult ProducteurCreationPanier()
+        //{
+
+            //using (IDal dal = new Dal())
+            //{
+                //return View("ProducteurCreationPanier");
+            //}
+
+        //}
+
+        //[HttpPost]
+        //public IActionResult ProducteurCreationPanier(IFormFile iFormFile)
+        //{
+            //return View("Error");
+        //}
 
         [HttpPost]
         public IActionResult SignIn(Profil profil, int inscriptiongroup, string entreprise, Int64 siret)

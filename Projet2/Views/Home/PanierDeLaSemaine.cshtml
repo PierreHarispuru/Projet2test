@@ -1,10 +1,59 @@
-﻿@{
+﻿@model Projet2.Models.Panier
+@{
     Layout = "_Layout";
     ViewBag.Title = "Paniers de la semaine";
 }
 
 
-        <div id="contenu">
-            <h3 class="titre">En vedette cette semaine</h3>
-            <p class="contenu">Proposés par nos meilleurs producteurs locaux</p>
-        </div>
+<!DOCTYPE html>
+<html>
+<body>
+     @using (Html.BeginForm()){
+    <fieldset>
+        <legend>Création de panier</legend>
+        <h3>Voici les paniers de la semaine à proximité de chez vous :</h3>
+        <br>
+        <table>
+            <tbody>
+                <form method="POST">
+                    <tr>
+                        <div>
+                        <td>@Html.LabelFor(m => m.lienImage)</td>
+                        <td>@Html.TextBoxFor(m => m.lienImage)</td>
+                        <td>@Html.ValidationMessageFor(m => m.lienImage)</td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div>
+                        <td>@Html.LabelFor(m => m.ProdId)</td>
+                        <td>@Html.TextBoxFor(m => m.ProdId)</td>
+                        <td>@Html.ValidationMessageFor(m => m.ProdId)</td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div>
+                        <td>@Html.LabelFor(m => m.description)</td>
+                        <td>@Html.TextAreaFor(m => m.description)</td>
+                        <td>@Html.ValidationMessageFor(m => m.description)</td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div>
+                        <td>@Html.LabelFor(m => m.QuantitePanier)</td>
+                        <td>@Html.TextBoxFor(m => m.QuantitePanier)</td>
+                        <td>@Html.ValidationMessageFor(m => m.QuantitePanier)</td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div>
+                        <td>@Html.LabelFor(m => m.prix)</td>
+                        <td>@Html.TextBoxFor(m => m.prix)</td>
+                        <td>@Html.ValidationMessageFor(m => m.prix)</td>
+                        </div>
+                    </tr>
+            </tbody>
+        </table>
+    <input type="submit" value="Ajouter à mon panier">
+    </fieldset>}
+</body>
+</html>

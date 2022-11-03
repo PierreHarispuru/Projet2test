@@ -13,6 +13,7 @@
 <body>
     @using (Html.BeginForm()){
     <fieldset>
+        <div class="col-md-6 offset-md-3">
         <legend>Création de compte AMAP-Online</legend>
         <table>
             <tbody>
@@ -29,44 +30,44 @@
                 <form method="POST">
                 <tr>
                     <div>
-                    <td>@Html.LabelFor(m => Model.Prenom)</td>
-                    <td>@Html.TextBoxFor(m => Model.Prenom)</td>
-                    <td>@Html.ValidationMessageFor(m => Model.Prenom)</td>
+                    <td>@Html.LabelFor(m => m.Prenom)</td>
+                    <td>@Html.TextBoxFor(m => m.Prenom)</td>
+                    <td>@Html.ValidationMessageFor(m => m.Prenom)</td>
                     </div>
                 </tr>
                 <tr>
                     <div>
-                    <td>@Html.LabelFor(m => Model.Nom)</td>
-                    <td>@Html.TextBoxFor(m => Model.Nom)</td>
-                    <td>@Html.ValidationMessageFor(m => Model.Nom)</td>
+                    <td>@Html.LabelFor(m => m.Nom)</td>
+                    <td>@Html.TextBoxFor(m => m.Nom)</td>
+                    <td>@Html.ValidationMessageFor(m => m.Nom)</td>
                     </div>
                 </tr>
                 <tr>
                     <div>
-                    <td>@Html.LabelFor(m => Model.Mail)</td>
-                    <td>@Html.TextBoxFor(m => Model.Mail)</td>
-                    <td>@Html.ValidationMessageFor(m => Model.Mail)</td>
+                    <td>@Html.LabelFor(m => m.Mail)</td>
+                    <td>@Html.TextBoxFor(m => m.Mail)</td>
+                    <td>@Html.ValidationMessageFor(m => m.Mail)</td>
                     </div>
                 </tr>
                 <tr>
                     <div>
-                    <td>@Html.LabelFor(m => Model.Adresse)</td>
-                    <td>@Html.TextBoxFor(m => Model.Adresse)</td>
-                    <td>@Html.ValidationMessageFor(m => Model.Adresse)</td>
+                    <td>@Html.LabelFor(m => m.Adresse)</td>
+                    <td>@Html.TextBoxFor(m => m.Adresse)</td>
+                    <td>@Html.ValidationMessageFor(m => m.Adresse)</td>
                     </div>
                 </tr>
                 <tr>
                     <div>
-                    <td>@Html.LabelFor(m => Model.Codepostal)</td>
-                    <td>@Html.TextBoxFor(m => Model.Codepostal, new { type="number", min="0", max="100000" })</td>
-                    <td>@Html.ValidationMessageFor(m => Model.Codepostal)</td>
+                    <td>@Html.LabelFor(m => m.Codepostal)</td>
+                    <td>@Html.TextBoxFor(m => m.Codepostal, new { type="number", min="0", max="100000" })</td>
+                    <td>@Html.ValidationMessageFor(m => m.Codepostal)</td>
                     </div>
                 </tr>
                 <tr>
                     <div>
-                    <td>@Html.LabelFor(m => Model.Telephone)</td>
-                    <td>@Html.TextBoxFor(m => Model.Telephone, new { type="number", min="0", max="10000000000" })</td>
-                    <td>@Html.ValidationMessageFor(m => Model.Telephone)</td>
+                    <td>@Html.LabelFor(m => m.Telephone)</td>
+                    <td>@Html.TextBoxFor(m => m.Telephone, new { type="number", min="0", max="10000000000" })</td>
+                    <td>@Html.ValidationMessageFor(m => m.Telephone)</td>
                     </div>
                 </tr>
                 <tr>
@@ -86,9 +87,12 @@
             </tbody>
         </table>
         <br />
-        <input type="submit" value="Envoyer le formulaire d'inscription">
+            <button type="submit" class="btn btn-primary">Envoyer le formulaire d'inscription</button>
         <br>
-    </fieldset>}
+
     <div>@Html.ActionLink("Déjà inscrit ? Veuillez vous connecter en cliquant ici", "SeConnecter")</div>
+    </div>
+    </fieldset>}
+   
 </body>
 </html>
