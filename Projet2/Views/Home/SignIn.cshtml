@@ -13,6 +13,7 @@
 <body>
     @using (Html.BeginForm()){
     <fieldset>
+        <div class="col-md-6 offset-md-3">
         <legend>Création de compte AMAP-Online</legend>
         <table>
             <tbody>
@@ -86,9 +87,12 @@
             </tbody>
         </table>
         <br />
-        <input type="submit" value="Envoyer le formulaire d'inscription">
+            <button type="submit" class="btn btn-primary">Envoyer le formulaire d'inscription</button>
         <br>
-    </fieldset>}
+
     <div>@Html.ActionLink("Déjà inscrit ? Veuillez vous connecter en cliquant ici", "SeConnecter")</div>
+    </div>
+    </fieldset>}
+   
 </body>
 </html>

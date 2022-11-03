@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using Projet2.Models;
 using Projet2.ViewModels;
@@ -9,12 +10,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Web;
 
 namespace Projet2.ViewModels
 {
     public class HomeController : Controller
     {
+
         public IActionResult Index()
         {
             Profil profil = new Profil { };
@@ -71,7 +74,8 @@ namespace Projet2.ViewModels
 
         public IActionResult PanierCommande()
         {
-            return View();
+
+                return View();
         }
         
 

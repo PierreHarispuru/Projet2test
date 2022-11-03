@@ -1,10 +1,47 @@
-﻿@{
+﻿@model Projet2.Models.Panier
+@{
     Layout = "_Layout";
     ViewBag.Title = "Votre panier";
 }
 
+<fieldset>
+    <legend>Votre liste de panier</legend>
+    <p class="contenu">ça donne envie, n'est-ce pas ?</p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sélectionner article</th>
+                <th>Votre article</th>
+                <th>Description</th>
+                <th>Qté</th>
+                <th>Prix</th>
+                <th>Supprimer article</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                        @using (Html.BeginForm("selectionPanier", "HomeControllers", FormMethod.Get))
+                        {
+                            @Html.CheckBox("selectionPanier", true)
+                        }
 
-        <div id="contenu">
-            <h3 class="titre">Voici une liste de vos paniers ajoutés</h3>
-            <p class="contenu">ça donne envie, n'est-ce pas ?</p>
-        </div>
+                </td>
+
+
+
+
+
+
+
+
+
+            </tr>
+
+        </tbody>
+    </table>
+</fieldset>
+
+
+
+

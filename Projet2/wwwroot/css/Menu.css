@@ -1,6 +1,8 @@
 ﻿#entete, #menu, #contenu, #footer {
     padding: 3px 0;
+    
 }
+
 
 #entete {
     background-color: forestgreen;
@@ -12,9 +14,17 @@
     margin: auto;
 }
 
-#contenu {
-    background-color: lightgreen;
+#text-align {
+    text-align: center;
 }
+
+#contenu {
+    background-color:blanchedalmond;
+}
+#menu {
+    align-content:center;
+}
+
 
 #footer {
     background-color: limegreen;
