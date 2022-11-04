@@ -4,43 +4,42 @@
     ViewBag.Title = "Votre panier";
 }
 
-<fieldset>
-    <legend>Votre liste de panier</legend>
-    <p class="contenu">ça donne envie, n'est-ce pas ?</p>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Sélectionner article</th>
-                <th>Votre article</th>
-                <th>Description</th>
-                <th>Qté</th>
-                <th>Prix</th>
-                <th>Supprimer article</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
+<div class="container mt-3">
+  <h2>Votre liste de panier</h2>    
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Sélection article</th>
+        <th>Votre article</th>
+        <th>Description</th>
+        <th>Qté</th>
+        <th>Prix</th>
+        <th>Supprimer article</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
                 <td>
-                        @using (Html.BeginForm("selectionPanier", "HomeControllers", FormMethod.Get))
-                        {
-                            @Html.CheckBox("selectionPanier", true)
-                        }
-
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" >
+                    </div>
                 </td>
-
-
-
-
-
-
-
-
-
-            </tr>
-
-        </tbody>
-    </table>
-</fieldset>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
 

@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Modifier votre mot de passe";
+}
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Connexion</legend>
+
+        <form action="/action_page.php" method="get">
+
+            <div class="mb-3 mt-3">
+                <label for="motdepasse" class="form-label">@Html.Label("Mot de passe")</label>
+                <input type="password" class="form-control" id="motdepasse" placeholder="Votre mot de passe actuel" name="motdepasse" required>
+            </div>
+            <div class="mb-3">
+                <label for="nouveaumotdepasse" class="form-label">Nouveau mot de passe</label>
+                <input type="password" class="form-control" id="nouveaumotdepasse" placeholder="Entrez votre nouveau mot de passe" name="nouveaumotdepasse" required>
+            </div>
+            <div class="mb-3">
+                <label for="nouveaumotdepasse" class="form-label">Confirmer le nouveau mot de passe</label>
+                <input type="password" class="form-control" id="nouveaumotdepasse" placeholder="Confirmer le nouveau mot de passe" name="nouveaumotdepasse" required>
+            </div>
+
+        </form>
+
+        <button type="submit" class="btn btn-primary">Changer le mot de passe</button>
+    </fieldset>
+    <br />
+    <div>@Html.ActionLink("Revenir à la page d'accueil", "Index")</div>
+    <br />
+}

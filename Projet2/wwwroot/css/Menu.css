@@ -1,8 +1,12 @@
 ﻿#entete, #menu, #contenu, #footer {
     padding: 3px 0;
-    
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 
 #entete {
     background-color: forestgreen;
@@ -19,17 +23,24 @@
 }
 
 #contenu {
-    background-color:blanchedalmond;
-}
-#menu {
-    align-content:center;
+    background-color: blanchedalmond;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 50px; /* Hauteur du pied de page */
 }
 
+#menu {
+    align-content: center;
+}
 
 #footer {
-    background-color: limegreen;
     text-align: center;
+    background-color: limegreen;
     clear: both;
+    position: absolute;
+    bottom: 0; /* on le colle en bas */
+    width: 100%;
+    height: 50px; /* Hauteur du pied de page */
 }
 
 .titre {
@@ -38,4 +49,19 @@
 
 .selectionne {
     color: red;
+}
+
+.map-container {
+    overflow: hidden;
+    padding-bottom: 100%;
+    position: relative;
+    height: 0;
+}
+
+.map-container iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
 }
