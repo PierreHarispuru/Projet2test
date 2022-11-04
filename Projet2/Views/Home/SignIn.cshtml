@@ -12,87 +12,66 @@
 <html>
 <body>
     @using (Html.BeginForm()){
+ 
     <fieldset>
+    <form action="/action_page.php" method="POST">
         <div class="col-md-6 offset-md-3">
         <legend>Création de compte AMAP-Online</legend>
+
         <table>
             <tbody>
                 <tr>
                     <td>Êtes-vous :</td>
                     <td><input checked="checked" type="radio" name="inscriptiongroup" value="1" id="particulier"><label for="particulier">Particulier</label></td>
-                    <td><input type="radio" name="inscriptiongroup" value="2" id="ce"><label for="ce">Comité d'entreprise</label></td>
+                    <td><input type="radio" name="inscriptiongroup" value="2" id="ce" ><label for="ce">Comité d'entreprise</label></td>
                     <td><input type="radio" name="inscriptiongroup" value="3" id="producteur"><label for="producteur">Producteur</label></td>
                 </tr>
             </tbody>
         </table>
-        <table>
-            <tbody>
-                <form method="POST">
-                <tr>
-                    <div>
-                    <td>@Html.LabelFor(m => m.Prenom)</td>
-                    <td>@Html.TextBoxFor(m => m.Prenom)</td>
-                    <td>@Html.ValidationMessageFor(m => m.Prenom)</td>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                    <td>@Html.LabelFor(m => m.Nom)</td>
-                    <td>@Html.TextBoxFor(m => m.Nom)</td>
-                    <td>@Html.ValidationMessageFor(m => m.Nom)</td>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                    <td>@Html.LabelFor(m => m.Mail)</td>
-                    <td>@Html.TextBoxFor(m => m.Mail)</td>
-                    <td>@Html.ValidationMessageFor(m => m.Mail)</td>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                    <td>@Html.LabelFor(m => m.Adresse)</td>
-                    <td>@Html.TextBoxFor(m => m.Adresse)</td>
-                    <td>@Html.ValidationMessageFor(m => m.Adresse)</td>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                    <td>@Html.LabelFor(m => m.Codepostal)</td>
-                    <td>@Html.TextBoxFor(m => m.Codepostal, new { type="number", min="0", max="100000" })</td>
-                    <td>@Html.ValidationMessageFor(m => m.Codepostal)</td>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                    <td>@Html.LabelFor(m => m.Telephone)</td>
-                    <td>@Html.TextBoxFor(m => m.Telephone, new { type="number", min="0", max="10000000000" })</td>
-                    <td>@Html.ValidationMessageFor(m => m.Telephone)</td>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                    <td><label for="entreprise">Nom de votre entreprise (facultatif)</label></td>
-                    <td><input type="text" id="entreprise" name="entreprise"></td>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                    <td><label for="siret">Numéro SIRET (facultatif)</label></td>
-                    <td><input type="number" id="siret" name="siret"></td>
-                    </div>
-                </tr>
-               
-                </form>
-            </tbody>
-        </table>
-        <br />
-            <button type="submit" class="btn btn-primary">Envoyer le formulaire d'inscription</button>
         <br>
+                <div>
+                    <label for="text" class="form-label">@Html.LabelFor(m => m.Nom)</label>
+                    <input type="text" class="form-control" id="Nom" placeholder="Entrez votre nom" name="Nom">
+                </div>
+                    <div>
+                <div>
+                    <label for="text" class="form-label">@Html.LabelFor(m => m.Prenom)</label>
+                    <input type="text" class="form-control" id="Prenom" placeholder="Entrez votre prénom" name="Prenom">
+                </div>
 
+                <div>
+                    <label for="text" class="form-label">@Html.LabelFor(m => m.Mail)</label>
+                    <input type="text" class="form-control" id="Mail" placeholder="Entrez votre adresse mail" name="Mail">
+                </div>
+                <div>
+                    <label for="text" class="form-label">@Html.LabelFor(m => m.Adresse)</label>
+                    <input type="text" class="form-control" id="Adresse" placeholder="Entrez votre adresse postale" name="Adresse">
+                </div>
+                <div>
+                    <label for="number" class="form-label">@Html.LabelFor(m => m.Codepostal)</label>
+                    <input type="number" class="form-control" id="Codepostal" placeholder="Entrer votre code postal" name="Codepostal">
+                </div>
+                <div>
+                    <label for="number" class="form-label">@Html.LabelFor(m => m.Telephone)</label>
+                    <input type="number" class="form-control" id="Telephone" placeholder="Entrez votre téléphone" name="Telephone">
+                </div>
+                <div>
+                <label for="text" class="form-label">Nom de votre entreprise</label>
+                    <input type="text" class="form-control" id="entreprise" placeholder="Entrez le nom de votre entreprise (facultatif)" name="entreprise">
+                </div>
+                <div>
+                <label for="number" class="form-label">Numéro SIRET</label>
+                    <input type="number" class="form-control" id="siret" placeholder="Entrez le numéro SIRET (facultatif)" name="siret">
+                </div>
+        
+        <br />
+                <div><button type="submit" class="btn btn-primary">Envoyer le formulaire d'inscription</button></div>
+
+              <br>
     <div>@Html.ActionLink("Déjà inscrit ? Veuillez vous connecter en cliquant ici", "SeConnecter")</div>
     </div>
+    </form>
     </fieldset>}
-   
+
 </body>
 </html>

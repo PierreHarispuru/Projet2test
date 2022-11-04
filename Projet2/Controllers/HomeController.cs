@@ -17,6 +17,14 @@ namespace Projet2.ViewModels
 {
     public class HomeController : Controller
     {
+        public IActionResult ModifierMotDePasse()
+        {
+            return View();
+        }
+        public IActionResult LayoutSeConnecter()
+        {
+            return View();
+        }
 
         public IActionResult Index()
         {
@@ -69,7 +77,18 @@ namespace Projet2.ViewModels
 
                 return View();
         }
-        
+
+        public IActionResult SuccessPanier()
+        {
+
+            return View();
+        }
+
+        public IActionResult SuccessSignIn()
+        {
+
+            return View();
+        }
 
         [HttpGet]
         public IActionResult SignIn ()
@@ -186,8 +205,8 @@ namespace Projet2.ViewModels
             }
         }
 
-        /*
-        [HttpGet]
+        
+        /*[HttpGet]
         public IActionResult ModifierProfil(int id)
         {
             if (id != 0)
