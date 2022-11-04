@@ -1,70 +1,40 @@
-﻿@model Projet2.Models.Panier
+﻿@model List<Projet2.Models.Panier>
 @{
     Layout = "_Layout";
     ViewBag.Title = "Paniers de la semaine";
 }
-
-
 <!DOCTYPE html>
 <html>
 <body>
-     @using (Html.BeginForm()){
+ 
     <fieldset>
         <legend>Création de panier</legend>
         <h3>Voici les paniers de la semaine à proximité de chez vous :</h3>
         <br>
         <table>
             <tbody>
-                <form method="POST">
                     <tr>
-                        <div>
-                        <td>@Html.LabelFor(m => m.lienImage)</td>
-                        <td>@Html.TextBoxFor(m => m.lienImage)</td>
-                        <td>@Html.ValidationMessageFor(m => m.lienImage)</td>
-                        </div>
-                    </tr>
-                    <tr>
-                        <div>
-                        <td>@Html.LabelFor(m => m.ProdId)</td>
-                        <td>@Html.TextBoxFor(m => m.ProdId)</td>
-                        <td>@Html.ValidationMessageFor(m => m.ProdId)</td>
-                        </div>
-                    </tr>
-                    <tr>
-                        <div>
-                        <td>@Html.LabelFor(m => m.description)</td>
-                        <td>@Html.TextAreaFor(m => m.description)</td>
-                        <td>@Html.ValidationMessageFor(m => m.description)</td>
-                        </div>
-                    </tr>
-                    <tr>
-                        <div>
-                        <td>@Html.LabelFor(m => m.QuantitePanier)</td>
-                        <td>@Html.TextBoxFor(m => m.QuantitePanier)</td>
-                        <td>@Html.ValidationMessageFor(m => m.QuantitePanier)</td>
-                        </div>
-                    </tr>
-                    <tr>
-                        <div>
-                        <td>@Html.LabelFor(m => m.prix)</td>
-                        <td>@Html.TextBoxFor(m => m.prix)</td>
-                        <td>@Html.ValidationMessageFor(m => m.prix)</td>
-                        </div>
+                        @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>)
+                            {
+                            <form method="POST" action="/Home/PanierDeLaSemaine">
+                            <div><img src="@panier.LienImage"></div>
+                            <div>@panier.Description</div>
+                            @if(panier.QuantitePanier>0){
+                                <div>
+                                <td>@panier.QuantitePanier paniers disponibles pour @panier.Prix €/unité</td>
+                                <td><label for="QtePanier">Quantité de paniers :</label></td>
+                                <td><input type="number" id="qtepanier" name="qtepanier"></td>
+                                <td><input type="hidden" id="id" name="id" value="@panier.Id"></td>
+                                <button type="submit" class="btn btn-primary" value="achatpanier">Ajouter à mes achats</button>
+                                </div>
+                            }else{
+                                <div>Panier non disponible</div>
+                            }
+                            </form>
+                        }
                     </tr>
             </tbody>
         </table>
-    <input type="submit" value="Ajouter à mon panier">
-    </fieldset>}
+    </fieldset>
 </body>
 </html>
-        <div id="contenu">
-            <h3 class="titre">En vedette cette semaine</h3>
-            <p class="contenu">Proposés par nos meilleurs producteurs locaux</p>
-        </div>
-        @*using(Projet2.Models.Dal dal =new Projet2.Models.Dal())
-        {
-    @foreach (Projet2.Models.Profil profil in ViewData["Profils"] as List<Projet2.Models.Profil> )
-        {
-            <div>youhou</div>
-        }
-        }*@
