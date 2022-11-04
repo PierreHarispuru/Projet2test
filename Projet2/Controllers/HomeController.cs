@@ -28,7 +28,7 @@ namespace Projet2.ViewModels
 
         public IActionResult Index()
         {
-            Profil profil = new Profil { };
+            Profil profil = new Profil();
 
             HomeViewModel hvm = new HomeViewModel
             {
@@ -57,14 +57,6 @@ namespace Projet2.ViewModels
             return View();
         }
 
-        public IActionResult PanierDeLaSemaine()
-        {
-            using (Dal dal = new Dal())
-            {
-                ViewData["Profils"] = dal._bddContext.Profils;
-            }
-            return View();
-        }
         public IActionResult Faq()
         {
             return View();
@@ -185,6 +177,32 @@ namespace Projet2.ViewModels
         public HomeController(IWebHostEnvironment env)
         {
             _env = env;
+        }
+        [HttpGet]
+        public IActionResult PanierDeLaSemaine()
+        {
+            using (Dal dal = new Dal())
+            {
+                ViewData["Paniers"] = dal.GetPaniers();
+                return View();
+            }
+        }
+        [HttpPost]
+        public IActionResult PanierDeLaSemaine(int qtepanier, int id)
+        {
+//A CHANGER AVEC LE LOGIN
+            int ProfilId = 3;
+
+            using (Dal dal = new Dal())
+            {
+                if (qtepanier != 0)
+                {
+                    dal.AcheterPanier(ProfilId, id, qtepanier);
+                }
+
+                ViewData["Paniers"] = dal.GetPaniers();
+                return View();
+            }
         }
 
         

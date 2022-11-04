@@ -1,13 +1,41 @@
-﻿@model Projet2.Models.Panier
+﻿@model List<Projet2.Models.Panier>
 @{
     Layout = "_Layout";
     ViewBag.Title = "Paniers de la semaine";
 }
-
-
 <!DOCTYPE html>
 <html>
 <body>
+ 
+    <fieldset>
+        <legend>Création de panier</legend>
+        <h3>Voici les paniers de la semaine à proximité de chez vous :</h3>
+        <br>
+        <table>
+            <tbody>
+                    <tr>
+                        @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>)
+                            {
+                            <form method="POST" action="/Home/PanierDeLaSemaine">
+                            <div><img src="@panier.LienImage"></div>
+                            <div>@panier.Description</div>
+                            @if(panier.QuantitePanier>0){
+                                <div>
+                                <td>@panier.QuantitePanier paniers disponibles pour @panier.Prix €/unité</td>
+                                <td><label for="QtePanier">Quantité de paniers :</label></td>
+                                <td><input type="number" id="qtepanier" name="qtepanier"></td>
+                                <td><input type="hidden" id="id" name="id" value="@panier.Id"></td>
+                                <button type="submit" class="btn btn-primary" value="achatpanier">Ajouter à mes achats</button>
+                                </div>
+                            }else{
+                                <div>Panier non disponible</div>
+                            }
+                            </form>
+                        }
+                    </tr>
+            </tbody>
+        </table>
+    </fieldset>
     <div class="container mt-3">
         <h2>Panier de la semaine</h2>
         <div class="card" style="width:300px">

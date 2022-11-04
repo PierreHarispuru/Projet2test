@@ -67,6 +67,24 @@ namespace Projet2.Models
             _bddContext.SaveChanges();
             return panier.Id;
         }
+        
+        public List<Panier> GetPaniers()
+        {
+            return _bddContext.Paniers.ToList();
+        }
+
+        public int AcheterPanier(int profilId, int panierId, int qtepanier)
+        {
+            Commande commande=new Commande { ClientId = profilId , PanierId= panierId, QtePanier=qtepanier};
+            _bddContext.Commandes.Add(commande);
+
+            Panier panier= new Panier();
+            panier = _bddContext.Paniers.Find(panierId);
+            panier.QuantitePanier -= qtepanier;
+
+            _bddContext.SaveChanges();
+            return commande.Id;
+        }
 
         /*public void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string adresse, int codepostal)
         {

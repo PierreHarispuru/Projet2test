@@ -10,6 +10,7 @@ namespace Projet2.Models
         public DbSet<Producteur> Producteurs { get; set; }
         public DbSet<Particulier> Particuliers { get; set; }
         public DbSet<Panier> Paniers { get; set; }
+        public DbSet<Commande> Commandes { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -80,7 +81,17 @@ namespace Projet2.Models
                     ProdId=1,
                     Prix=28,
                     Description="Trois patates et deux carottes",
-                    LienImage="/Panier1.png"
+                    LienImage= "/Images/Users/canard.jpg"
+                }
+            );
+            this.Paniers.AddRange(
+                new Panier
+                {
+                    QuantitePanier = 6,
+                    ProdId = 1,
+                    Prix = 35,
+                    Description = "Un cafard et une salade",
+                    LienImage = "/Images/Users/canard.jpg"
                 }
             );
             this.SaveChanges();
