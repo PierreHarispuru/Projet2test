@@ -6,33 +6,34 @@
 }
 @model Projet2.Models.Panier
 
-<h4>Veuillez fournir une description détaillée pour nos fidèles adhérents d'AMAP Online</h4>
-<form action="" method="post" enctype="multipart/form-data">
+
+<div id="text-align"><h3>Veuillez fournir une description détaillée pour nos fidèles adhérents d'AMAP Online</h3></div>
+<form method="post" enctype="multipart/form-data">
+<form action="/action_page.php">
 <fieldset>
     <legend>Création de panier : </legend>
-    <table>
-        <tr>
+            <div>
                 <label for="file">Votre panier en photo : </label>
-                <input type="file" name="PhotoPanier" id="PhotoPanier"/>
-        </tr>
-        <tr>
-                <td>@Html.LabelFor(m => m.QuantitePanier)</td>
-                <td>@Html.TextBoxFor(m => m.QuantitePanier, new { type="number", min="0"})</td>
-                <td>@Html.ValidationMessageFor(m => m.QuantitePanier)</td>
-        </tr>
-        <tr>
-                <td>@Html.LabelFor(m => m.Description)</td>
-                <td>@Html.TextBoxFor(m => m.Description)</td>
-                <td>@Html.ValidationMessageFor(m => m.Description)</td>
-        </tr>
-        <tr>
-                <td>@Html.LabelFor(m => m.Prix)</td>
-                <td>@Html.TextBoxFor(m => m.Prix, new { type="number", min="0"})</td>
-                <td>@Html.ValidationMessageFor(m => m.Prix)</td>
-        </tr>
-    </table>
-    <br>
-    <input type="submit" value="Mettre en ligne le panier" />
-    <br>
+                <input type="file"  name="File" id="File" required/>
+            </div>
+            <br />
+            <div>
+                <label for="text" class="form-label">@Html.LabelFor(m => m.Description)</label>
+                <input type="text" class="form-control" name="Description" id="Description" required/>
+            </div>
+            <div>
+                <label for="number" class="form-label">@Html.LabelFor(m => m.QuantitePanier)</label>
+                <input type="number" class="form-control" name="QuantitePanier" id="QuantitePanier" required />
+            </div>
+         
+            <div>
+                <label for="number" class="form-label">@Html.LabelFor(m => m.Prix)</label>
+                <input type="number" step="0.01" class="form-control" name="Prix" id="Prix" required />
+            </div>
+            <br />
+            <div><button type="submit" class="btn btn-primary">Mettre en ligne le panier</button></div>
 </fieldset>
 </form>
+</form>
+
+

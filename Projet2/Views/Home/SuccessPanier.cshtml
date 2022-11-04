@@ -2,5 +2,15 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "_Layout";
+    ViewBag.Title = "Success Panier";
 }
-youpi :D
+<br />
+<h3>Votre panier a bien été rajouté</h3>
+<br />
+<div>@Html.ActionLink("Pour rajouter d'autres paniers, veuillez cliquer ici", "ProducteurCreationPanier")</div>
+<br />
+<div>@Html.ActionLink("Consulter les paniers récemment ajoutés", "PanierDeLaSemaine")</div>
+<br />
+<div>@Html.ActionLink("Revenir à la page d'accueil", "Index")</div>
+<br />

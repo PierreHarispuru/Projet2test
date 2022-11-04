@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
@@ -11,38 +10,46 @@
 </head>
 <body>
     <div id="header">
-    <div class="container-fluid p-5 text-center">
-        <h1>Bienvenue sur le site AMAP-Online</h1>
-    </div>
-    </div>
-        <div class="container-fluid p-3 bg-success text-white">
-            
-            <ul class="navbar-nav">
-            <li class="nav-item">
-            <div id="text-align">
-            <div class="row">
-                <div class="col"><a class="nav-link" @Html.ActionLink("Accueil", "Index")</div>
-                <div class="col"><a class="nav-link" @Html.ActionLink("Évènement à venir", "Evenement")</div>
-                <div class="col"><a class="nav-link" @Html.ActionLink("Adhérer", "Adherer")</div>
-                <div class="col"><a class="nav-link" @Html.ActionLink("Paniers de la semaine", "PanierDeLaSemaine")</div>
-                <div class="col"><a class="nav-link" @Html.ActionLink("FAQ", "Faq")</div>
-                <div class="col"><a class="nav-link" @Html.ActionLink("Nous contacter", "Contact")</div>
-                <div class="col"><a class="nav-link" @Html.ActionLink("Se connecter", "SeConnecter")</div>
-                <div class="col"><a class="nav-link" @Html.ActionLink("Créer un compte", "SignIn")</div>
-                <div class="col"><a class="nav-link" @Html.ActionLink("Votre Panier", "PanierCommande")</div>
-                <div class="col"><a class="nav-link" @Html.ActionLink("Création de panier", "ProducteurCreationPanier")</div>
-            </div>
-            </div>
-            </li>
-            </ul>
-            </div>
-        <div id="contenu">
-            @RenderBody()
+        <div class="container-fluid p-3 text-center">
+            <h1>Bienvenue sur le site AMAP-Online</h1>
         </div>
-
-
-    <div id="footer">
-        &copy; @DateTime.Now.Year - De magnifiques courgettes tout près de chez vous
     </div>
+    <div class="container-fluid p-3 bg-success text-white">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <div id="text-align">
+                    <div class="row">
+                        <div class="col"><a class="nav-link" @Html.ActionLink("Accueil", "Index")</div>
+                        <div class="col"><a class="nav-link" @Html.ActionLink("Évènement à venir", "Evenement")</div>
+                        <div class="col"><a class="nav-link" @Html.ActionLink("Adhérer", "Adherer")</div>
+                        <div class="col"><a class="nav-link" @Html.ActionLink("Paniers de la semaine", "PanierDeLaSemaine")</div>
+                        <div class="col"><a class="nav-link" @Html.ActionLink("FAQ", "Faq")</div>
+                        <div class="col"><a class="nav-link" @Html.ActionLink("Nous contacter", "Contact")</div>
+                        <div class="col"><a class="nav-link" @Html.ActionLink("Se connecter", "SeConnecter")</div>
+                        <div class="col"><a class="nav-link" @Html.ActionLink("Créer un compte", "SignIn")</div>
+                        <div class="col"><a class="nav-link" @Html.ActionLink("Votre Panier", "PanierCommande")</div>
+                        <div class="col"><a class="nav-link" @Html.ActionLink("Création de panier", "ProducteurCreationPanier")</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="contenu">
+        <div class="col-md-6 offset-md-3">
+        <br />
+        @RenderBody()
+        <br />
+        </div>
+    </div>
+@*    <div id="footer">
+        <p>&copy; @DateTime.Now.Year - De magnifiques courgettes tout près de chez vous</p>
+    </div>*@
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <span class="text-light">Place sticky footer content here.</span>
+        </div>
+    </footer>
+
+
 </body>
 </html>

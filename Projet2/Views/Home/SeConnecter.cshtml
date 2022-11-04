@@ -2,30 +2,29 @@
     Layout = "_Layout";
     ViewBag.Title = "Se connecter";
 }
-
+<br />
 @using (Html.BeginForm())
 {
     <fieldset>
-        <div class="col-md-6 offset-md-3">
         <legend>Connexion</legend>
 
-        <form action="/action_page.php">
+        <form action="/action_page.php" method="get">
 
             <div class="mb-3 mt-3">
                 <label for="email" class="form-label">@Html.Label("Email")</label>
-                <input type="email" class="form-control" id="login" placeholder="Entrer votre adresse mail" name="email">
+                <input type="email" class="form-control" id="login" placeholder="Entrez votre adresse mail" name="email" required>
             </div>
             <div class="mb-3">
                 <label for="motdepasse" class="form-label">@Html.Label("Mot de passe")</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Entrer votre mot de passe" name="motdepasse">
+                <input type="password" class="form-control" id="pwd" placeholder="Entrez votre mot de passe" name="motdepasse" required>
             </div>
 
             </form>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <div>@Html.ActionLink("Pas encore inscrit ? Veuillez créer un compte en cliquant ici", "SignIn")</div>
-        </div>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
     </fieldset>
-   
+        <br />
+        <div>@Html.ActionLink("Pas encore inscrit ? Veuillez créer un compte en cliquant ici", "SignIn")</div>
+        <br />
 }
 

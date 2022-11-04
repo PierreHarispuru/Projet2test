@@ -4,7 +4,14 @@
 }
 
 
-        <div id="contenu">
-            <h3 class="titre">Page d'adhésion</h3>
-            <p class="contenu">Pour soutenir l'agriculture paysanne</p>
-        </div>
+<div id="contenu">
+      <h3 class="titre">Page d'adhésion</h3>
+      <br />
+      <fieldset>
+            <div>@Html.ActionLink("Pour adhérer, veuillez d'abord vous connecter à votre compte en cliquant ici", "SeConnecter")</div>
+            <br />
+            <div>@Html.ActionLink("Pas encore inscrit ? Veuillez créer un compte en cliquant ici", "SignIn")</div>
+      </fieldset>     
+</div>
+
+<h3>Pourquoi adhérer à une AMAP</h3>
