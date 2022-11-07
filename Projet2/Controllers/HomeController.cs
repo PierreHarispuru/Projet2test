@@ -12,6 +12,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Web;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace Projet2.ViewModels
 {
@@ -204,8 +206,87 @@ namespace Projet2.ViewModels
                 return View();
             }
         }
+        public IActionResult Index2()
+        {
+            using (Dal dal = new Dal()) {                
+            ProfilViewModel viewModel = new ProfilViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentifie)
+            {
+                viewModel.Profil = dal.ObtenirUtilisateur(HttpContext.User.Identity.Name);
+                return View(viewModel);
+            }
+            return View(viewModel); }
 
-        
+        }
+
+
+        [HttpPost]
+        public IActionResult Index2(ProfilViewModel viewModel, string returnUrl)
+        {
+            using (Dal dal = new Dal())
+            {
+                if (ModelState.IsValid)
+                {
+                    Profil profil = dal.Authentifier(viewModel.Profil.Prenom, viewModel.Profil.Password);
+                    if (profil != null)
+                    {
+                        var userClaims = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.Name, profil.Id.ToString())
+                    };
+
+                        var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
+
+                        var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
+
+                        HttpContext.SignInAsync(userPrincipal);
+
+                        if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                            return Redirect(returnUrl);
+
+                        return Redirect("/");
+                    }
+                    ModelState.AddModelError("Utilisateur.Prenom", "Prénom et/ou mot de passe incorrect(s)");
+                }
+                return View(viewModel);
+            }
+        }
+
+        public IActionResult CreerCompte()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreerCompte(Profil profil)
+        {
+            using (Dal dal = new Dal())
+            {
+                if (ModelState.IsValid)
+                {
+                    int id = dal.AjouterUtilisateur(profil.Prenom, profil.Password);
+
+                    var userClaims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, id.ToString()),
+                };
+
+                    var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
+
+                    var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
+                    HttpContext.SignInAsync(userPrincipal);
+
+                    return Redirect("/");
+                }
+                return View(profil);
+            }
+        }
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return Redirect("/");
+        }
+
         /*[HttpGet]
         public IActionResult ModifierProfil(int id)
         {
