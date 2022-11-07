@@ -51,6 +51,9 @@ html, body {
     color: red;
 }
 
+#card-deck {
+    display: inline-block;
+}
 .map-container {
     overflow: hidden;
     padding-bottom: 100%;
