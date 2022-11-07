@@ -17,7 +17,7 @@ namespace Projet2.Controllers
         {
             dal = new Dal();
         }
-        public IActionResult Index()
+        public IActionResult Index2()
         {
             ProfilViewModel viewModel = new ProfilViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentifie)
@@ -28,8 +28,9 @@ namespace Projet2.Controllers
             return View(viewModel);
         }
 
+
         [HttpPost]
-        public IActionResult Index(ProfilViewModel viewModel, string returnUrl)
+        public IActionResult Index2(ProfilViewModel viewModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {

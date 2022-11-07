@@ -21,7 +21,7 @@ namespace Projet2
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
         {
-            options.LoginPath = "/Login/Index";
+            options.LoginPath = "/Home/Index2";
 
         });
             services.AddControllersWithViews();
