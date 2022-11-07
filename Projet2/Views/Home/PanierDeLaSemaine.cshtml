@@ -6,57 +6,40 @@
 <!DOCTYPE html>
 <html>
 <body>
- 
-    <fieldset>
-        <legend>Création de panier</legend>
-        <h3>Voici les paniers de la semaine à proximité de chez vous :</h3>
-        <br>
-        <table>
-            <tbody>
-                    <tr>
-                        @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>)
-                            {
-                            <form method="POST" action="/Home/PanierDeLaSemaine">
-                            <div><img src="@panier.LienImage"></div>
-                            <div>@panier.Description</div>
-                            @if(panier.QuantitePanier>0){
-                                <div>
-                                <td>@panier.QuantitePanier paniers disponibles pour @panier.Prix €/unité</td>
-                                <td><label for="QtePanier">Quantité de paniers :</label></td>
-                                <td><input type="number" id="qtepanier" name="qtepanier"></td>
-                                <td><input type="hidden" id="id" name="id" value="@panier.Id"></td>
-                                <button type="submit" class="btn btn-primary" value="achatpanier">Ajouter à mes achats</button>
-                                </div>
-                            }else{
-                                <div>Panier non disponible</div>
-                            }
-                            </form>
-                        }
-                    </tr>
-            </tbody>
-        </table>
-    </fieldset>
-    <div class="container mt-3">
-        <h2>Panier de la semaine</h2>
-        <div class="card" style="width:300px">
-            <img class="card-img-top" src="~/Images/Users/canard.jpg" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">Canard en plastique</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-        </div>
-        <br>
 
+    <div class="card-deck">
+    @*<div class="container mt-3">*@
         
-    <input type="submit" value="Ajouter à mon panier">
+    @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>) {
+            <br />
+            <div class="row">
+            <form method="POST" action="/Home/PanierDeLaSemaine">
+            <div class="card" style="width:300px">
+            <img class="card-img-top" src="@panier.LienImage" alt="Panier de la semaine" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title" id="text-align">@panier.Description</h4>
+                        @if (panier.QuantitePanier > 0)
+                        {
+                            <div><p>Panier(s) disponible(s) : @panier.QuantitePanier</p></div>
+                            <div><p>Prix à l'unité : @panier.Prix €</p></div>
+                            <div><p><label for="QtePanier">Quantité de paniers :</label></p></div>
+                            <div><p><input type="number" id="qtepanier" name="qtepanier"></p></div> 
+                            <div><p><input type="hidden" id="id" name="id" value="@panier.Id"></p></div>
+
+                            <button type="submit" class="btn btn-primary" value="achatpanier">Ajouter à mes achats</button>
+                        }
+                        else
+                        {
+                            <div>Panier non disponible</div>
+                        }
+            </div>
+            </div>
+            
+            </form>
+            </div>
+        }
+        </div>
+
     
 </body>
 </html>
-        @*using(Projet2.Models.Dal dal =new Projet2.Models.Dal())
-        {
-    @foreach (Projet2.Models.Profil profil in ViewData["Profils"] as List<Projet2.Models.Profil> )
-        {
-            <div>youhou</div>
-        }
-        }*@

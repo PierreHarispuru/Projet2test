@@ -95,6 +95,16 @@ namespace Projet2.Models
                 }
             );
             this.SaveChanges();
+
+            this.Profils.AddRange(
+            new Profil
+                {
+            Id = 4,
+            Mail = "toto@gmail.com",
+            Password = Dal.EncodeMD5("ppppp")
+                }
+            );
+            this.SaveChanges();
         }
     }
 }

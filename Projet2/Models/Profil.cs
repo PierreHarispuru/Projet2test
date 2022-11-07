@@ -23,6 +23,8 @@ namespace Projet2.Models
         [Display(Name="Code postal")]
         
         public int Codepostal { get; set; }
+        [Display(Name="Mot de passe")]
+        public string Password { get; set; }
 
     }
 }

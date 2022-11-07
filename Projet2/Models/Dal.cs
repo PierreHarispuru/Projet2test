@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using XSystem.Security.Cryptography;
 
 namespace Projet2.Models
 {
@@ -84,6 +88,43 @@ namespace Projet2.Models
 
             _bddContext.SaveChanges();
             return commande.Id;
+        }
+
+        public int AjouterUtilisateur(string prenom, string password)
+        {
+            string motDePasse = EncodeMD5(password);
+            Profil user = new Profil() { Prenom = prenom, Password = motDePasse };
+            this._bddContext.Profils.Add(user);
+            this._bddContext.SaveChanges();
+            return user.Id;
+        }
+
+        public Profil Authentifier(string prenom, string password)
+        {
+            string motDePasse = EncodeMD5(password);
+            Profil user = this._bddContext.Profils.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
+            return user;
+        }
+
+        public Profil ObtenirUtilisateur(int id)
+        {
+            return this._bddContext.Profils.Find(id);
+        }
+
+        public Profil ObtenirUtilisateur(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.ObtenirUtilisateur(id);
+            }
+            return null;
+        }
+
+        public static string EncodeMD5(string motDePasse)
+        {
+            string motDePasseSel = "ChoixResto" + motDePasse + "ASP.NET MVC";
+            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(motDePasseSel)));
         }
 
         /*public void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string adresse, int codepostal)
