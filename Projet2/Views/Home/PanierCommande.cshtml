@@ -24,13 +24,13 @@
                         @if (panier.Id == comm.PanierId && comm.Payee == false)
                         {
                             <tr>
-                                <td><img src="@panier.LienImage"></td>
-                                <td>@panier.Description</td>
-                                <td>@panier.QuantitePanier</td>
-                                <td>@panier.Prix</td>
+                                <td><img class="img-thumbnail" src="@panier.LienImage" width="100" height="100"></td>
+                                <td><p class="text-center">@panier.Description</p></td>
+                                <td><p class="text-center">@comm.QtePanier</p></td>
+                                <td><p class="text-center">@panier.Prix</p></td>
                                 <td><button class="btn btn-primary">Supprimer</button></td>
                             </tr>
-                                total = total + panier.Prix * panier.QuantitePanier;
+                                total = total + panier.Prix * comm.QtePanier;
                         }
             }
       }
@@ -38,17 +38,10 @@
     </table>
     <h3>Total : @total €</h3>
 
-    <div>@Html.ActionLink("Paiement", "Paiement")</div>
-</div>
-
-<tbody>
-    <div class="row">
+    <div>
+        <div class="btn-group btn-group-lg"><button type="submit" class="btn btn-warning">@Html.ActionLink("Paiement", "Paiement", "Home",null, new {style="text-decoration:none;"})</button></div>
     </div>
-    
-</tbody>
-</table>
 </div>
-<button type="submit" class="btn btn-primary">Payer</button>
 
 
 

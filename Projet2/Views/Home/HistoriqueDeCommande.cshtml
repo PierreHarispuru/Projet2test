@@ -1,0 +1,45 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Historique de Commande";
+}
+
+
+<div class="container mt-3">
+    <h2>Votre liste de panier</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Votre article</th>
+                <th>Description</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+            </tr>
+
+
+            @foreach (Projet2.Models.Commande comm in ViewData["Commandes"] as List<Projet2.Models.Commande>)
+            {
+                @if (comm.ClientId.Equals(ViewData["Id"]))
+                {
+                    @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>)
+                    {
+                        @if (panier.Id == comm.PanierId && comm.Payee == true)
+                        {
+                            <tr>
+                                <td><img class="img-thumbnail" src="@panier.LienImage" width="100" height="100"></td>
+                                <td>@panier.Description</td>
+                                <td>@comm.QtePanier</td>
+                                <td>@panier.Prix</td>
+                             
+                            </tr>
+                           
+                        }
+                    }
+                }
+            }
+        </thead>
+    </table>
+</div>
