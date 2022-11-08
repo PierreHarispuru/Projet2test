@@ -101,7 +101,9 @@ namespace Projet2.Models
         public int AjouterUtilisateur(string mail, string password)
         {
             string motDePasse = EncodeMD5(password);
-            Profil user = new Profil() { Mail = mail, Password = motDePasse };
+
+            Profil user = new Profil() { Mail = mail, Password = motDePasse};
+
             this._bddContext.Profils.Add(user);
             this._bddContext.SaveChanges();
             return user.Id;

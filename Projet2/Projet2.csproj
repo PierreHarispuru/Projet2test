@@ -22,6 +22,7 @@
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Views\Login\" />
+	  <Folder Include="Views\Shared\" />
 	  <Folder Include="wwwroot\Images\Users\" />
 	</ItemGroup>
 

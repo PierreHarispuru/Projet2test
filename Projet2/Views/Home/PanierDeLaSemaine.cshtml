@@ -7,39 +7,41 @@
 <html>
 <body>
 
-    <div class="card-deck">
-    @*<div class="container mt-3">*@
-        
-    @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>) {
-            <br />
-            <div class="row">
-            <form method="POST" action="/Home/PanierDeLaSemaine">
-            <div class="card" style="width:300px">
-            <img class="card-img-top" src="@panier.LienImage" alt="Panier de la semaine" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title" id="text-align">@panier.Description</h4>
-                        @if (panier.QuantitePanier > 0)
-                        {
-                            <div><p>Panier(s) disponible(s) : @panier.QuantitePanier</p></div>
-                            <div><p>Prix à l'unité : @panier.Prix €</p></div>
-                            <div><p><label for="QtePanier">Quantité de paniers :</label></p></div>
-                            <div><p><input type="number" id="qtepanier" name="qtepanier"></p></div> 
-                            <div><p><input type="hidden" id="id" name="id" value="@panier.Id"></p></div>
+    <div class="row">
+        @*<div class="container mt-3">*@
 
-                            <button type="submit" class="btn btn-primary" value="achatpanier">Ajouter à mes achats</button>
-                        }
-                        else
-                        {
-                            <div>Panier non disponible</div>
-                        }
-            </div>
-            </div>
-            
-            </form>
+        @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>)
+        {
+
+
+            <div class="col">
+                <form method="POST" action="/Home/PanierDeLaSemaine">
+                    <div class="card" style="width:300px">
+                        <img class="card-img-top" src="@panier.LienImage" alt="Panier de la semaine" style="width:100%">
+                        <div class="card-body">
+                            <h4 class="card-title" id="text-align">@panier.Description</h4>
+                            @if (panier.QuantitePanier > 0)
+                            {
+                                <div><p>Panier(s) disponible(s) : @panier.QuantitePanier</p></div>
+                                <div><p>Prix à l'unité : @panier.Prix €</p></div>
+                                <div><p><label for="QtePanier">Quantité de paniers :</label></p></div>
+                                <div><p><input type="number" id="qtepanier" name="qtepanier"></p></div>
+                                <div><p><input type="hidden" id="id" name="id" value="@panier.Id"></p></div>
+
+                                <button type="submit" class="btn btn-primary" value="achatpanier">Ajouter à mes achats</button>
+                            }
+                            else
+                            {
+                                <div>Panier non disponible</div>
+                            }
+                        </div>
+                    </div>
+                </form>
             </div>
         }
-        </div>
 
-    
+    </div>
+
+
 </body>
 </html>

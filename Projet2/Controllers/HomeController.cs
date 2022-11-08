@@ -244,7 +244,9 @@ namespace Projet2.ViewModels
 
                         return Redirect("/");
                     }
-                    ModelState.AddModelError("Profil.Mail", "Mail et/ou mot de passe incorrect(s)");
+
+                    ModelState.AddModelError("Profil.Mail", "Adresse mail et/ou mot de passe incorrect(s)");
+
                 }
                 return View(viewModel);
             }
@@ -255,6 +257,7 @@ namespace Projet2.ViewModels
             HttpContext.SignOutAsync();
             return Redirect("/");
         }
+
 
         public IActionResult PanierCommande()
         {
@@ -288,36 +291,7 @@ namespace Projet2.ViewModels
             return View();
         }
 
-        /*
-        public IActionResult CreerCompte()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult CreerCompte(Profil profil)
-        {
-            using (Dal dal = new Dal())
-            {
-                if (ModelState.IsValid)
-                {
-                    int id = dal.AjouterUtilisateur(profil.Mail, profil.Password);
-
-                    var userClaims = new List<Claim>()
-                {
-                    new Claim(ClaimTypes.Name, id.ToString()),
-                };
-
-                    var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
-
-                    var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
-                    HttpContext.SignInAsync(userPrincipal);
-
-                    return Redirect("/");
-                }
-                return View(profil);
-            }
-        }*/
+        
 
         /*[HttpGet]
         public IActionResult ModifierProfil(int id)
