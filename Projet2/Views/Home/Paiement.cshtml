@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Title = "Paiement";
+}
+    <h4>
+        Veuillez vous authentifier :
+    </h4>
+<form method="POST">
+        <div class="mb-3">
+                <label for="NumeroCarte" class="form-label">@Html.Label("Numéro de carte")</label>
+                <input type="text" class="form-control" id="NumeroCarte" name="NumeroCarte" required>
+        </div>
+        <div class="mb-3">
+                <label for="Crypto" class="form-label">@Html.Label("Cryptogramme Visuel")</label>
+                <input type="number" class="form-control" id="Crypto" name="Crypto" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Effectuer le paiement</button>
+        <br />
+</form>
+        
+    

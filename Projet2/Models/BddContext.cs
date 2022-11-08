@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace Projet2.Models
@@ -31,7 +32,9 @@ namespace Projet2.Models
                     Telephone = 0102030405,
                     Adresse = "34 chemin du puis",
                     Codepostal = 75000,
-                    Id = 1
+                    Id = 1,
+                    Password=Dal.EncodeMD5("mdp"),
+                    Role="Entreprise"
                 },
                 new Profil
                 {
@@ -41,7 +44,9 @@ namespace Projet2.Models
                     Telephone = 0405060708,
                     Adresse = "648 rue de la paix",
                     Codepostal = 75009,
-                    Id = 2
+                    Id = 2,
+                    Password = Dal.EncodeMD5("mdp"),
+                    Role="Producteur"
                 },
                 new Profil
                 {
@@ -51,7 +56,9 @@ namespace Projet2.Models
                     Telephone = 0607080910,
                     Adresse = "58 rue de chez george",
                     Codepostal = 75002,
-                    Id = 3
+                    Id = 3,
+                    Password = Dal.EncodeMD5("mdp"),
+                    Role="Particulier"
                 }
             );
             this.Producteurs.AddRange(
@@ -94,16 +101,29 @@ namespace Projet2.Models
                     LienImage = "/Images/Users/canard.jpg"
                 }
             );
-            this.SaveChanges();
 
             this.Profils.AddRange(
             new Profil
                 {
-            Id = 4,
-            Mail = "toto@gmail.com",
-            Password = Dal.EncodeMD5("ppppp")
+                Nom="Toto",
+                Prenom="tartempion",
+                Id = 4,
+                Mail = "toto@gmail.com",
+                Password = Dal.EncodeMD5("ppppp")
                 }
             );
+           
+            this.Commandes.AddRange(
+            new Commande
+            {
+                Id = 1,
+                ClientId=3,
+                PanierId=2,
+                QtePanier=3 ,
+                Payee = false
+            }
+            );
+
             this.SaveChanges();
         }
     }

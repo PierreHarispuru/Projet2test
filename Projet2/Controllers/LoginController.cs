@@ -28,7 +28,6 @@ namespace Projet2.Controllers
             return View(viewModel);
         }
 
-
         [HttpPost]
         public IActionResult Index2(ProfilViewModel viewModel, string returnUrl)
         {

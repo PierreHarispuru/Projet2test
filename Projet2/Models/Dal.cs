@@ -76,10 +76,18 @@ namespace Projet2.Models
         {
             return _bddContext.Paniers.ToList();
         }
+        public List<Profil> GetProfils()
+        {
+            return _bddContext.Profils.ToList();
+        }
+        public List<Commande> GetCommandes()
+        {
+            return _bddContext.Commandes.ToList();
+        }
 
         public int AcheterPanier(int profilId, int panierId, int qtepanier)
         {
-            Commande commande=new Commande { ClientId = profilId , PanierId= panierId, QtePanier=qtepanier};
+            Commande commande=new Commande { ClientId = profilId , PanierId = panierId, QtePanier = qtepanier, Payee = false};
             _bddContext.Commandes.Add(commande);
 
             Panier panier= new Panier();
@@ -90,19 +98,19 @@ namespace Projet2.Models
             return commande.Id;
         }
 
-        public int AjouterUtilisateur(string prenom, string password)
+        public int AjouterUtilisateur(string mail, string password)
         {
             string motDePasse = EncodeMD5(password);
-            Profil user = new Profil() { Prenom = prenom, Password = motDePasse };
+            Profil user = new Profil() { Mail = mail, Password = motDePasse };
             this._bddContext.Profils.Add(user);
             this._bddContext.SaveChanges();
             return user.Id;
         }
 
-        public Profil Authentifier(string prenom, string password)
+        public Profil Authentifier(string mail, string password)
         {
             string motDePasse = EncodeMD5(password);
-            Profil user = this._bddContext.Profils.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
+            Profil user = this._bddContext.Profils.FirstOrDefault(u => u.Mail == mail && u.Password == motDePasse);
             return user;
         }
 
@@ -125,6 +133,18 @@ namespace Projet2.Models
         {
             string motDePasseSel = "ChoixResto" + motDePasse + "ASP.NET MVC";
             return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(motDePasseSel)));
+        }
+
+        public void PayerCommande(int ProfilId)
+        {
+            foreach (Commande comm in this._bddContext.Commandes)
+            {
+                if(comm.ClientId == ProfilId)
+                {
+                    comm.Payee = true;
+                }
+            }
+            this._bddContext.SaveChanges();
         }
 
         /*public void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string adresse, int codepostal)

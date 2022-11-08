@@ -7,8 +7,7 @@
 @if (Model.Authentifie)
 {
     <h3>
-        Vous êtes déjà authentifié avec le login :
-        @Model.Profil.Mail
+        Vous êtes déjà authentifié !
     </h3>
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
 }
@@ -36,4 +35,5 @@ else
         
     }
 }
+
 

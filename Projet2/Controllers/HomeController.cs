@@ -14,6 +14,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Web;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using XAct;
 
 namespace Projet2.ViewModels
 {
@@ -74,12 +75,6 @@ namespace Projet2.ViewModels
             return View();
         }
 
-        public IActionResult PanierCommande()
-        {
-
-                return View();
-        }
-
         public IActionResult SuccessPanier()
         {
 
@@ -106,6 +101,7 @@ namespace Projet2.ViewModels
         [HttpPost]
         public IActionResult SignIn(Profil profil, int inscriptiongroup, string entreprise, Int64 siret)
         {
+
             if (!ModelState.IsValid)
             return View(profil);
 
@@ -114,14 +110,17 @@ namespace Projet2.ViewModels
                 int profilId=dal.CreerProfil(profil);
                 if (inscriptiongroup == 1)
                 {
+                    profil.Role = "Particulier";
                     dal.CreerParticulier(profilId);
                 }
                 if (inscriptiongroup == 2)
                 {
+                    profil.Role = "Entreprise";
                     dal.CreerEntreprise(profilId, entreprise, siret);
                 }
                 if (inscriptiongroup == 3)
                 {
+                    profil.Role = "Producteur";
                     dal.CreerProducteur(profilId);
                 }
                 return View("SuccessSignIn");
@@ -146,11 +145,9 @@ namespace Projet2.ViewModels
             if (!ModelState.IsValid)
                 return View();
 
-//A MODIFIER SELON LOGIN
-            panier.ProdId = 1;
-            
+            panier.ProdId = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid).Value);
 
-            using(Dal dal=new Dal())
+            using (Dal dal=new Dal())
             {
                 if (PhotoPanier != null)
                 {
@@ -192,11 +189,11 @@ namespace Projet2.ViewModels
         [HttpPost]
         public IActionResult PanierDeLaSemaine(int qtepanier, int id)
         {
-//A CHANGER AVEC LE LOGIN
-            int ProfilId = 3;
+
 
             using (Dal dal = new Dal())
             {
+                int ProfilId = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid).Value);
                 if (qtepanier != 0)
                 {
                     dal.AcheterPanier(ProfilId, id, qtepanier);
@@ -227,12 +224,13 @@ namespace Projet2.ViewModels
             {
                 if (ModelState.IsValid)
                 {
-                    Profil profil = dal.Authentifier(viewModel.Profil.Prenom, viewModel.Profil.Password);
+                    Profil profil = dal.Authentifier(viewModel.Profil.Mail, viewModel.Profil.Password);
                     if (profil != null)
                     {
                         var userClaims = new List<Claim>()
                     {
-                        new Claim(ClaimTypes.Name, profil.Id.ToString())
+                        new Claim(ClaimTypes.Sid, profil.Id.ToString()),
+                        new Claim(ClaimTypes.Role, profil.Role)
                     };
 
                         var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
@@ -246,12 +244,51 @@ namespace Projet2.ViewModels
 
                         return Redirect("/");
                     }
-                    ModelState.AddModelError("Utilisateur.Prenom", "Prénom et/ou mot de passe incorrect(s)");
+                    ModelState.AddModelError("Profil.Mail", "Mail et/ou mot de passe incorrect(s)");
                 }
                 return View(viewModel);
             }
         }
 
+        public ActionResult Deconnexion()
+        {
+            HttpContext.SignOutAsync();
+            return Redirect("/");
+        }
+
+        public IActionResult PanierCommande()
+        {
+
+            using (Dal dal = new Dal())
+            {
+                int ProfilId = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid).Value);
+                ViewData["Id"] = ProfilId;
+                ViewData["Commandes"] = dal.GetCommandes();
+                ViewData["Paniers"] = dal.GetPaniers();
+                return View();
+            }
+        }
+        [HttpGet]
+        public IActionResult Paiement()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Paiement(string NumeroCarte, int Crypto)
+        {
+            using (Dal dal = new Dal())
+            {
+                int ProfilId = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid).Value);
+                dal.PayerCommande(ProfilId);
+            }
+            return View("SuccessPaiement");
+        }
+        public IActionResult SuccessPaiement()
+        {
+            return View();
+        }
+
+        /*
         public IActionResult CreerCompte()
         {
             return View();
@@ -264,7 +301,7 @@ namespace Projet2.ViewModels
             {
                 if (ModelState.IsValid)
                 {
-                    int id = dal.AjouterUtilisateur(profil.Prenom, profil.Password);
+                    int id = dal.AjouterUtilisateur(profil.Mail, profil.Password);
 
                     var userClaims = new List<Claim>()
                 {
@@ -280,12 +317,7 @@ namespace Projet2.ViewModels
                 }
                 return View(profil);
             }
-        }
-        public ActionResult Deconnexion()
-        {
-            HttpContext.SignOutAsync();
-            return Redirect("/");
-        }
+        }*/
 
         /*[HttpGet]
         public IActionResult ModifierProfil(int id)
