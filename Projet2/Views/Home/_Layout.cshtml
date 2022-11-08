@@ -19,16 +19,16 @@
             <li class="nav-item">
                 <div id="text-align">
                     <div class="row">
-                        <div class="col"><a class="nav-link" @Html.ActionLink("Accueil", "Index")</div>
-                        <div class="col"><a class="nav-link" @Html.ActionLink("Évènement à venir", "Evenement")</div>
-                        <div class="col"><a class="nav-link" @Html.ActionLink("Adhérer", "Adherer")</div>
-                        <div class="col"><a class="nav-link" @Html.ActionLink("Paniers de la semaine", "PanierDeLaSemaine")</div>
-                        <div class="col"><a class="nav-link" @Html.ActionLink("FAQ", "Faq")</div>
-                        <div class="col"><a class="nav-link" @Html.ActionLink("Nous contacter", "Contact")</div>
-                        <div class="col"><a class="nav-link" @Html.ActionLink("Se connecter", "Index2")</div>
-                        <div class="col"><a class="nav-link" @Html.ActionLink("Créer un compte", "SignIn")</div>
-                        <div class="col"><a class="nav-link" @Html.ActionLink("Vos Achats", "PanierCommande")</div>
-                        <div class="col"><a class="nav-link" @Html.ActionLink("Création de panier", "ProducteurCreationPanier")</div>
+                        <div class="col">@Html.ActionLink("Accueil", "Index", "Home",null, new {@class="nav-link"})</div>
+                        @*<div class="col"><a class="nav-link" @Html.ActionLink("Évènement à venir", "Evenement")</div>*@
+                        <div class="col">@Html.ActionLink("Adhérer", "Adherer", "Home",null, new {@class="nav-link"})</div>
+                        <div class="col">@Html.ActionLink("Paniers de la semaine", "PanierDeLaSemaine", "Home",null, new { @class="nav-link"} )</div>
+                        <div class="col">@Html.ActionLink("FAQ", "Faq", "Home",null, new {@class="nav-link"})</div>
+                        <div class="col">@Html.ActionLink("Nous contacter", "Contact", "Home",null, new {@class="nav-link"})</div>
+                        <div class="col">@Html.ActionLink("Se connecter", "Index2", "Home",null, new {@class="nav-link"})</div>
+                        <div class="col">@Html.ActionLink("Créer un compte", "SignIn", "Home",null, new {@class="nav-link"})</div>
+                        <div class="col">@Html.ActionLink("Vos Achats", "PanierCommande", "Home",null, new {@class="nav-link"})</div>
+                        <div class="col">@Html.ActionLink("Création de panier", "ProducteurCreationPanier", "Home",null, new {@class="nav-link"})</div>
                     </div>
                 </div>
             </li>

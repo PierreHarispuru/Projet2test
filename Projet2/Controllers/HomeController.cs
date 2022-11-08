@@ -227,7 +227,7 @@ namespace Projet2.ViewModels
             {
                 if (ModelState.IsValid)
                 {
-                    Profil profil = dal.Authentifier(viewModel.Profil.Prenom, viewModel.Profil.Password);
+                    Profil profil = dal.Authentifier(viewModel.Profil.Mail, viewModel.Profil.Password);
                     if (profil != null)
                     {
                         var userClaims = new List<Claim>()
@@ -246,39 +246,9 @@ namespace Projet2.ViewModels
 
                         return Redirect("/");
                     }
-                    ModelState.AddModelError("Utilisateur.Prenom", "Prénom et/ou mot de passe incorrect(s)");
+                    ModelState.AddModelError("Profil.Mail", "Adresse mail et/ou mot de passe incorrect(s)");
                 }
                 return View(viewModel);
-            }
-        }
-
-        public IActionResult CreerCompte()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult CreerCompte(Profil profil)
-        {
-            using (Dal dal = new Dal())
-            {
-                if (ModelState.IsValid)
-                {
-                    int id = dal.AjouterUtilisateur(profil.Prenom, profil.Password);
-
-                    var userClaims = new List<Claim>()
-                {
-                    new Claim(ClaimTypes.Name, id.ToString()),
-                };
-
-                    var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
-
-                    var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
-                    HttpContext.SignInAsync(userPrincipal);
-
-                    return Redirect("/");
-                }
-                return View(profil);
             }
         }
         public ActionResult Deconnexion()
