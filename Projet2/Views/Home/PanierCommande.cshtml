@@ -2,6 +2,7 @@
 @{
     Layout = "_Layout";
     ViewBag.Title = "Votre panier";
+    double total = 0;
 }
 
 <div class="container mt-3">
@@ -9,15 +10,36 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Sélection article</th>
         <th>Votre article</th>
         <th>Description</th>
-        <th>Qté</th>
-        <th>Prix</th>
-        <th>Supprimer article</th>
+        <th>Quantité</th>
+        <th>Prix unitaire</th>
+        <th>Supprimer commande</th>
       </tr>
-    </thead>
 
+  
+  @foreach (Projet2.Models.Commande comm in ViewData["Commandes"] as List<Projet2.Models.Commande> ) {
+      @if(comm.ClientId.Equals(ViewData["Id"])){
+            @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>) {
+                        @if (panier.Id == comm.PanierId && comm.Payee == false)
+                        {
+                            <tr>
+                                <td><img src="@panier.LienImage"></td>
+                                <td>@panier.Description</td>
+                                <td>@panier.QuantitePanier</td>
+                                <td>@panier.Prix</td>
+                                <td><button class="btn btn-primary">Supprimer</button></td>
+                            </tr>
+                                total = total + panier.Prix * panier.QuantitePanier;
+                        }
+            }
+      }
+    }</thead>
+    </table>
+    <h3>Total : @total €</h3>
+
+    <div>@Html.ActionLink("Paiement", "Paiement")</div>
+</div>
 
 <tbody>
     <div class="row">

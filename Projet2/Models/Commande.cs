@@ -1,4 +1,6 @@
-﻿namespace Projet2.Models
+﻿using System;
+
+namespace Projet2.Models
 {
     public class Commande
     {
@@ -6,5 +8,6 @@
         public int? ClientId { get; set; }
         public int? PanierId { get; set; }
         public int QtePanier { get; set; }
+        public Boolean Payee { get; set; }
     }
 }
