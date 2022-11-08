@@ -8,8 +8,8 @@ public interface IDal : IDisposable
     List<Profil> ObtientTousLesProfils();
     int CreerProfil(Profil profil);
 
-    int AjouterUtilisateur(string nom, string password);
-    Profil Authentifier(string nom, string password);
+    int AjouterUtilisateur(string mail, string password);
+    Profil Authentifier(string mail, string password);
     Profil ObtenirUtilisateur(int id);
     Profil ObtenirUtilisateur(string idStr);
     //void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string addresse, int codepostal);

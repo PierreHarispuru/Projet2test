@@ -90,19 +90,19 @@ namespace Projet2.Models
             return commande.Id;
         }
 
-        public int AjouterUtilisateur(string prenom, string password)
+        public int AjouterUtilisateur(string mail, string password)
         {
             string motDePasse = EncodeMD5(password);
-            Profil user = new Profil() { Prenom = prenom, Password = motDePasse };
+            Profil user = new Profil() { Mail = mail, Password = motDePasse};
             this._bddContext.Profils.Add(user);
             this._bddContext.SaveChanges();
             return user.Id;
         }
 
-        public Profil Authentifier(string prenom, string password)
+        public Profil Authentifier(string mail, string password)
         {
             string motDePasse = EncodeMD5(password);
-            Profil user = this._bddContext.Profils.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
+            Profil user = this._bddContext.Profils.FirstOrDefault(u => u.Mail == mail && u.Password == motDePasse);
             return user;
         }
 

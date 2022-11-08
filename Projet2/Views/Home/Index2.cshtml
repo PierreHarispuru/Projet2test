@@ -7,10 +7,11 @@
 @if (Model.Authentifie)
 {
     <h3>
-        Vous êtes déjà authentifié avec le login :
-        @Model.Profil.Mail
+        Vous êtes déjà authentifié avec le login : @Model.Profil.Mail
     </h3>
+    <br />
     @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
+    
 }
 else
 {
@@ -19,8 +20,9 @@ else
     </h4>
     using (Html.BeginForm())
     {
+        
         <div class="mb-3">
-           
+
             @Html.LabelFor(m => m.Profil.Mail)
             @Html.TextBoxFor(m => m.Profil.Mail)
             @Html.ValidationMessageFor(m => m.Profil.Mail)
@@ -31,9 +33,9 @@ else
             @Html.ValidationMessageFor(m => m.Profil.Password)
         </div>
         <input type="submit" value="Se connecter" />
-        @Html.ActionLink("Créer un compte", "SignIn")
         <br />
-        
+        <br />
+        @Html.ActionLink("Créer un compte", "SignIn")
     }
 }
 
