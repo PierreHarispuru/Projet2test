@@ -8,6 +8,12 @@ html, body {
     height: 100%;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 #entete {
     background-color: forestgreen;
     text-align: center;

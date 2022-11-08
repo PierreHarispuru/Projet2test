@@ -12,6 +12,19 @@
     <link href="~/css/Menu.css" rel="stylesheet" />
 </head>
 
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <table>
+            <tr><td><img src="~/logo.png" width="100" height="100"/></td>
+                <td>
+                    <div class="container-fluid text-center">
+                        <h1>Bienvenue sur le site AMAP-Online</h1>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </nav>
+
 @if (User.Identity.IsAuthenticated)
 {
 
@@ -19,24 +32,19 @@
     Boolean isNotProducteur = !role.Equals("Producteur");
     Boolean isNotBuyer = !(role.Equals("Particulier") || role.Equals("Entreprise"));
 
-<body>
-    <div id="header">
-        <div class="container-fluid p-3 text-center">
-            <h1>Bienvenue sur le site AMAP-Online</h1>
-        </div>
-    </div>
+
     <div class="container-fluid p-3 bg-success text-white">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <div id="text-align">
                     <div class="row">
                         <div class="col">@Html.ActionLink("Accueil", "Index", "Home",null, new { @class="nav-link"} )</div>
-                        <div class="col">@Html.ActionLink("Évènement à venir", "Evenement", "Home",null, new { @class="nav-link"})</div>
+                        @*<div class="col">@Html.ActionLink("Évènement à venir", "Evenement", "Home",null, new { @class="nav-link"})</div>*@
                         <div class="col" hidden=@isNotBuyer>@Html.ActionLink("Adhérer", "Adherer", "Home",null, new { @class="nav-link"})</div>
                         <div class="col">@Html.ActionLink("Paniers de la semaine", "PanierDeLaSemaine", "Home",null, new { @class="nav-link"})</div>
                         <div class="col">@Html.ActionLink("FAQ", "Faq", "Home",null, new { @class="nav-link"})</div>
                         <div class="col">@Html.ActionLink("Nous contacter", "Contact", "Home",null, new { @class="nav-link"})</div>
-                        <div class="col">@Html.ActionLink("Se déconnecter", "Index2", "Home",null, new { @class="nav-link"})</div>
+                        <div class="col">@Html.ActionLink("Mon compte", "LayoutSeConnecter", "Home",null, new { @class="nav-link"})</div>
                         <div class="col" hidden=@isNotBuyer>@Html.ActionLink("Vos Achats", "PanierCommande", "Home",null, new { @class="nav-link"})</div>
                         <div class="col" hidden=@isNotProducteur>@Html.ActionLink("Création de panier", "ProducteurCreationPanier", "Home",null, new { @class="nav-link"} )</div>
                     </div>
@@ -51,31 +59,22 @@
         <br />
         </div>
     </div>
-    <footer class="footer mt-auto py-3 bg-dark">
+        <footer class="footer fixed-bottom mt-auto py-3 bg-success">
         <div class="container">
             <span class="text-light">&copy; @DateTime.Now.Year - De magnifiques courgettes tout près de chez vous</span>
         </div>
     </footer>
 
-
-</body>
     }
     else
     {
-
-<body>
-    <div id="header">
-        <div class="container-fluid p-3 text-center">
-            <h1>Bienvenue sur le site AMAP-Online</h1>
-        </div>
-    </div>
     <div class="container-fluid p-3 bg-success text-white">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <div id="text-align">
                     <div class="row">
                             <div class="col">@Html.ActionLink("Accueil", "Index", "Home",null, new { @class="nav-link"} )</div>
-                            <div class="col">@Html.ActionLink("Évènement à venir", "Evenement", "Home",null, new { @class="nav-link"})</div>
+                            @*<div class="col">@Html.ActionLink("Évènement à venir", "Evenement", "Home",null, new { @class="nav-link"})</div>*@
                             <div class="col">@Html.ActionLink("FAQ", "Faq", "Home",null, new { @class="nav-link"})</div>
                             <div class="col">@Html.ActionLink("Nous contacter", "Contact", "Home",null, new { @class="nav-link"})</div>
                             <div class="col">@Html.ActionLink("Se connecter", "Index2", "Home",null, new { @class="nav-link"})</div>
@@ -92,14 +91,14 @@
         <br />
         </div>
     </div>
-    <footer class="footer mt-auto py-3 bg-dark">
+    <footer class="footer mt-auto py-3 bg-success">
         <div class="container">
             <span class="text-light">&copy; @DateTime.Now.Year - De magnifiques courgettes tout près de chez vous</span>
         </div>
     </footer>
 
 
-</body>
-    }
 
+    }
+    </body>
 </html>
