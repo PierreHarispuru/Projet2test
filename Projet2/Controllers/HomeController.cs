@@ -15,6 +15,7 @@ using System.Web;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using XAct;
+using Projet2.Helpers;
 
 namespace Projet2.ViewModels
 {
@@ -271,6 +272,30 @@ namespace Projet2.ViewModels
                 return View();
             }
         }
+
+        public IActionResult HistoriqueDeCommande()
+        {
+
+            using (Dal dal = new Dal())
+            {
+                int ProfilId = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid).Value);
+                ViewData["Id"] = ProfilId;
+                ViewData["Commandes"] = dal.GetCommandes();
+                ViewData["Paniers"] = dal.GetPaniers();
+                return View();
+            }
+        }
+
+        //public IActionResult Remove(int id)
+        //{
+        //    var cartId = SessionHelper.GetObjectFromJson<int>(HttpContext.Session, "cartId");
+        //    new Dal().RemoveItem(cartId, id);
+        //    return RedirectToAction("Index");
+        //}
+
+
+
+
         [HttpGet]
         public IActionResult Paiement()
         {
@@ -290,6 +315,7 @@ namespace Projet2.ViewModels
         {
             return View();
         }
+
 
         
 
