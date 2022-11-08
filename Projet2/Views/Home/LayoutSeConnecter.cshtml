@@ -77,7 +77,7 @@ The Web Content in detail.
                         <a class="nav-link" href="#">Mon historique de commande</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Changer mes coordonnées</a>
+                        <div class="col">@Html.ActionLink("Modifier mon profil", "ModifierProfil", "Home",null, new {@class="nav-link"})</div>
                     </li>
                     <li class="nav-item">
                         <div class="col">@Html.ActionLink("Modifier mon mot de passe", "ModifierMotDePasse", "Home",null, new {@class="nav-link"})</div>

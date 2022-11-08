@@ -15,6 +15,7 @@ using System.Web;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using XAct;
+using Microsoft.AspNetCore.Identity;
 
 namespace Projet2.ViewModels
 {
@@ -293,22 +294,19 @@ namespace Projet2.ViewModels
 
         
 
-        /*[HttpGet]
-        public IActionResult ModifierProfil(int id)
+        [HttpGet]
+        public IActionResult ModifierProfil()
         {
-            if (id != 0)
-            {
                 using (IDal dal = new Dal())
                 {
-                    Profil profil = dal.ObtientTousLesProfils().Where(r => r.Id == id).FirstOrDefault();
+                    int ProfilId = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid).Value);
+                    Profil profil = dal.ObtientTousLesProfils().Where(r => r.Id == ProfilId).FirstOrDefault();
                     if (profil == null)
                     {
                         return View("Error");
                     }
                     return View(profil);
                 }
-            }
-            return View("Error");
         }
 
         [HttpPost]
@@ -317,18 +315,36 @@ namespace Projet2.ViewModels
             if (!ModelState.IsValid)
                 return View(profil);
 
-            if (profil.Id != 0)
-            {
-                using (Dal dal = new Dal())
+            using (Dal dal = new Dal())
                 {
                     dal.ModifierProfil(profil);
-                    return RedirectToAction("ModifierProfil", new { @id = profil.Id });
+                    return View("SuccessMaj");
+                }
+           
+        }
+        [HttpGet]
+        public IActionResult ModifierMotdePasse()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ModifierMotdePasse(string password, string nouveaumotdepasse, string nouveaumotdepasse2)
+        {
+            if(!nouveaumotdepasse.Equals(nouveaumotdepasse2))
+            return View();
+
+            using (Dal dal=new Dal())
+            {
+                int ProfilId = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid).Value);
+                if (dal.ModifierMDP(ProfilId, password, nouveaumotdepasse))
+                {
+                    return View("SuccessMaj");
+                }
+                else
+                {
+                    return View();
                 }
             }
-            else
-            {
-                return View("Error");
-            }
-        }*/
+        }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using XSystem.Security.Cryptography;
@@ -36,11 +37,9 @@ namespace Projet2.Models
 
         public int CreerProfil(Profil profil)
         {
-               
                 _bddContext.Profils.Add(profil);
                 _bddContext.SaveChanges();
                 return profil.Id;
-            
         }
 
         public int CreerParticulier(int profilId)
@@ -149,26 +148,28 @@ namespace Projet2.Models
             this._bddContext.SaveChanges();
         }
 
-        /*public void ModifierProfil(int id, string nom, string prenom, string mail, int telephone, string adresse, int codepostal)
+        public void ModifierProfil(Profil profil)
         {
-            Profil profil = _bddContext.Profils.Find(id);
+            this._bddContext.Profils.Update(profil);
+            this._bddContext.SaveChanges();
+        }
 
-            if (profil != null)
+        public Boolean ModifierMDP(int id, string oldPW, string newPW)
+        {
+            Profil user = this._bddContext.Profils.FirstOrDefault(u => u.Id == id);
+            oldPW=Dal.EncodeMD5(oldPW);
+            newPW=Dal.EncodeMD5(newPW);
+            if (user.Password.Equals(oldPW))
             {
-                profil.Nom = nom;
-                profil.Prenom = prenom;
-                profil.Mail = mail;
-                profil.Telephone = telephone;
-                profil.Adresse = adresse;
-                profil.Codepostal = codepostal;
-                _bddContext.SaveChanges();
+                user.Password = newPW;
+                this._bddContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
-        public void ModifierProfil(Profil profil)
-        {
-            _bddContext.Profils.Update(profil);
-            _bddContext.SaveChanges();
-        }*/
     }
 }

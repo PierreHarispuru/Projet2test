@@ -17,8 +17,32 @@
             @Html.TextBoxFor(m => Model.Nom)
             @Html.ValidationMessageFor(m => Model.Nom)
             <br />
+            @Html.LabelFor(m => Model.Prenom)
+            @Html.TextBoxFor(m => Model.Prenom)
+            @Html.ValidationMessageFor(m => Model.Prenom)
+            <br />
+            @Html.LabelFor(m => Model.Mail)
+            @Html.TextBoxFor(m => Model.Mail)
+            @Html.ValidationMessageFor(m => Model.Mail)
+            <br />
+            @Html.LabelFor(m => Model.Adresse)
+            @Html.TextBoxFor(m => Model.Adresse)
+            @Html.ValidationMessageFor(m => Model.Adresse)
+            <br />
+            @Html.LabelFor(m => Model.Codepostal)
+            @Html.TextBoxFor(m => Model.Codepostal)
+            @Html.ValidationMessageFor(m => Model.Codepostal)
+            <br />
+            @Html.LabelFor(m => Model.Telephone)
+            @Html.TextBoxFor(m => Model.Telephone)
+            @Html.ValidationMessageFor(m => Model.Telephone)
+            <br />
+            <div><p><input type="hidden" id="id" name="id" value="@Model.Id"></p></div>
+            <div><p><input type="hidden" id="Role" name="Role" value="@Model.Role"></p></div>
+            <div><p><input type="hidden" id="Password" name="Password" value="@Model.Password"></p></div>
             <input type="submit" value="Modifier" />
         </fieldset>
+
     }
 </body>
 </html>

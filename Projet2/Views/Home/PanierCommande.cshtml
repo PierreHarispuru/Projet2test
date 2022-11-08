@@ -26,11 +26,11 @@
                             <tr>
                                 <td><img src="@panier.LienImage"></td>
                                 <td>@panier.Description</td>
-                                <td>@panier.QuantitePanier</td>
+                                <td>@comm.QtePanier</td>
                                 <td>@panier.Prix</td>
                                 <td><button class="btn btn-primary">Supprimer</button></td>
                             </tr>
-                                total = total + panier.Prix * panier.QuantitePanier;
+                                total = total + panier.Prix * comm.QtePanier;
                         }
             }
       }
@@ -41,11 +41,6 @@
     <div>@Html.ActionLink("Paiement", "Paiement")</div>
 </div>
 
-<tbody>
-    <div class="row">
-    </div>
-    
-</tbody>
 </table>
 </div>
 <button type="submit" class="btn btn-primary">Payer</button>
