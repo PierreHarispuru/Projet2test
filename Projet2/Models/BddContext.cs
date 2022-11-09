@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace Projet2.Models
 {
@@ -16,8 +17,19 @@ namespace Projet2.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
-        }
+			if (System.Diagnostics.Debugger.IsAttached)
+            {
+               optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");  // connexion string. Attention au password. avec comme nom de BDD : ChoixSejourTest
+            }
+            else
+            {
+                IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+                optionsBuilder.UseMySql(configuration.GetConnectionString("DefaultConnection"));
+            }
+		}
 
         public void InitializeDb()
         {

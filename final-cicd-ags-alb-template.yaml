@@ -48,23 +48,23 @@ Parameters:
   GitRepo:
     Type: String
     Description: ...
-    Default: P2_BioVenue
+    Default: Projet2test
   GithubUser:
     Type: String
     Description: ...
-    Default: Demonshrous
+    Default: PierreHarispuru
   ApplicationName:
     Type: String
     Description: ...
-    Default: biovenue
+    Default: projet2test
   DllToStart:
     Type: String
     Description: ...
-    Default: BioVenue.dll
+    Default: Projet2.dll
   Client:
     Type: String
     Description: ...
-    Default: gr1
+    Default: gr2
   CertificateArn:
     Type: String
     Description: ...
