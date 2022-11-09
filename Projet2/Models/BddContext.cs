@@ -51,10 +51,10 @@ namespace Projet2.Models
                 new Profil
                 {
                     Nom = "Lachat",
-                    Prenom = "georges",
+                    Prenom = "Georges",
                     Mail = "george@gmail.fr",
                     Telephone = 0607080910,
-                    Adresse = "58 rue de chez george",
+                    Adresse = "58 rue de chez Georges",
                     Codepostal = 75002,
                     Id = 3,
                     Password = Dal.EncodeMD5("mdp"),
@@ -106,7 +106,7 @@ namespace Projet2.Models
             new Profil
                 {
                 Nom="Toto",
-                Prenom="tartempion",
+                Prenom="Tartempion",
                 Id = 4,
                 Mail = "toto@gmail.com",
                 Password = Dal.EncodeMD5("ppppp")

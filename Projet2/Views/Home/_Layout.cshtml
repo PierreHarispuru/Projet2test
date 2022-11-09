@@ -47,6 +47,7 @@
                         <div class="col">@Html.ActionLink("Mon compte", "LayoutSeConnecter", "Home",null, new { @class="nav-link"})</div>
                         <div class="col" hidden=@isNotBuyer>@Html.ActionLink("Vos Achats", "PanierCommande", "Home",null, new { @class="nav-link"})</div>
                         <div class="col" hidden=@isNotProducteur>@Html.ActionLink("Création de panier", "ProducteurCreationPanier", "Home",null, new { @class="nav-link"} )</div>
+                        <div class="col">@Html.ActionLink("Déconnexion", "Deconnexion", "Home",null, new {@class="nav-link"})</div>
                     </div>
                 </div>
             </li>

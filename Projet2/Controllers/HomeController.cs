@@ -28,7 +28,16 @@ namespace Projet2.ViewModels
         }
         public IActionResult LayoutSeConnecter()
         {
-            return View();
+            using (IDal dal = new Dal())
+            {
+                int ProfilId = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid).Value);
+                Profil profil = dal.ObtientTousLesProfils().Where(r => r.Id == ProfilId).FirstOrDefault();
+                if (profil == null)
+                {
+                    return View("Error");
+                }
+                return View(profil);
+            }
         }
 
         public IActionResult Index()
