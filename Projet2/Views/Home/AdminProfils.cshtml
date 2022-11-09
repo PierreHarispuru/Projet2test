@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Profils";
+}
+<div class="container mt-3">
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Numéro de téléphone</th>
+                <th>Adresse</th>
+                <th>Code Postal</th>
+                <th>Mail</th>
+                <th>Rôle</th>
+            </tr>
+            @foreach (Projet2.Models.Profil profil in ViewData["Profils"] as List<Projet2.Models.Profil>)
+            {
+                <tr>
+                    <td>@profil.Prenom</td>
+                    <td>@profil.Nom</td>
+                    <td>@profil.Telephone</td>
+                    <td>@profil.Adresse</td>
+                    <td>@profil.Codepostal</td>
+                    <td>@profil.Mail</td>
+                    <td>@profil.Role</td>
+                    <td><button class="btn btn-primary">Modifier</button></td>
+                </tr>
+            }
+        </thead>
+    </table>
+</div>

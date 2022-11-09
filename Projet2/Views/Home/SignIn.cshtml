@@ -11,75 +11,77 @@
 <!DOCTYPE html>
 <html>
 <body>
-    @using (Html.BeginForm()){
- 
-    <fieldset>
-    <form action="/action_page.php" method="POST">
-        <div class="col-md-6 offset-md-3">
-        <legend>Création de compte AMAP-Online</legend>
+    @using (Html.BeginForm())
+    {
 
-        <table>
-            <tbody>
-                <tr>
-                    <td>Êtes-vous :</td>
-                    <td><input checked="checked" type="radio" name="inscriptiongroup" value="1" id="particulier"><label for="particulier">Particulier</label></td>
-                    <td><input type="radio" name="inscriptiongroup" value="2" id="ce" ><label for="ce">Comité d'entreprise</label></td>
-                    <td><input type="radio" name="inscriptiongroup" value="3" id="producteur"><label for="producteur">Producteur</label></td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-                <div>
-                    <label for="text" class="form-label">@Html.LabelFor(m => m.Nom)</label>
-                    <input type="text" class="form-control" id="Nom" placeholder="Entrez votre nom" name="Nom">
-                </div>
+        <fieldset>
+            <form action="/action_page.php" method="POST">
+                <div class="col-md-6 offset-md-3">
+                    <legend>Création de compte AMAP-Online</legend>
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Êtes-vous :</td>
+                                <td><input checked="checked" type="radio" name="inscriptiongroup" value="1" id="particulier"><label for="particulier">Particulier</label></td>
+                                <td><input type="radio" name="inscriptiongroup" value="2" id="ce"><label for="ce">Comité d'entreprise</label></td>
+                                <td><input type="radio" name="inscriptiongroup" value="3" id="producteur"><label for="producteur">Producteur</label></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
                     <div>
-                <div>
-                    <label for="text" class="form-label">@Html.LabelFor(m => m.Prenom)</label>
-                    <input type="text" class="form-control" id="Prenom" placeholder="Entrez votre prénom" name="Prenom">
-                </div>
+                        <label for="text" class="form-label">@Html.LabelFor(m => m.Nom)</label>
+                        <input type="text" class="form-control" id="Nom" placeholder="Entrez votre nom" name="Nom" required="required">
+                    </div>
+                    <div>
+                        <div>
+                            <label for="text" class="form-label">@Html.LabelFor(m => m.Prenom)</label>
+                            <input type="text" class="form-control" id="Prenom" placeholder="Entrez votre prénom" name="Prenom" required="required">
+                        </div>
 
-                <div>
-                    <label for="text" class="form-label">@Html.LabelFor(m => m.Mail)</label>
-                    <input type="text" class="form-control" id="Mail" placeholder="Entrez votre adresse mail" name="Mail">
-                </div>
-                <div>
-                    <label for="text" class="form-label">@Html.LabelFor(m => m.Adresse)</label>
-                    <input type="text" class="form-control" id="Adresse" placeholder="Entrez votre adresse postale" name="Adresse">
-                </div>
-                <div>
-                    <label for="number" class="form-label">@Html.LabelFor(m => m.Codepostal)</label>
-                    <input type="number" class="form-control" id="Codepostal" placeholder="Entrer votre code postal" name="Codepostal">
-                </div>
-                <div>
-                    <label for="number" class="form-label">@Html.LabelFor(m => m.Telephone)</label>
-                    <input type="number" class="form-control" id="Telephone" placeholder="Entrez votre téléphone" name="Telephone">
-                </div>
-                <div>
-                    <label for="password" class="form-label">@Html.LabelFor(m => m.Password)</label>
-                    <input type="password" class="form-control" id="Password" placeholder="Créer un mot de passe" name="Password">
-                </div>
-                <div>
-                    <label for="password" class="form-label">@Html.LabelFor(m => m.Password)</label>
-                    <input type="password" class="form-control" id="Password" placeholder="Confirmer le mot de passe" name="Password">
-                </div>
-                <div>
-                    <label for="text" class="form-label">Nom de votre entreprise</label>
-                    <input type="text" class="form-control" id="entreprise" placeholder="Entrez le nom de votre entreprise (facultatif)" name="entreprise">
-                </div>
-                <div>
-                <label for="number" class="form-label">Numéro SIRET</label>
-                    <input type="number" class="form-control" id="siret" placeholder="Entrez le numéro SIRET (facultatif)" name="siret">
-                </div>
-        
-        <br />
-                <div><button type="submit" class="btn btn-primary">Envoyer le formulaire d'inscription</button></div>
+                        <div>
+                            <label for="text" class="form-label">@Html.LabelFor(m => m.Mail)</label>
+                            <input type="text" class="form-control" id="Mail" placeholder="Entrez votre adresse mail" name="Mail" required="required">
+                        </div>
+                        <div>
+                            <label for="text" class="form-label">@Html.LabelFor(m => m.Adresse)</label>
+                            <input type="text" class="form-control" id="Adresse" placeholder="Entrez votre adresse postale" name="Adresse" required="required">
+                        </div>
+                        <div>
+                            <label for="number" class="form-label">@Html.LabelFor(m => m.Codepostal)</label>
+                            <input type="number" class="form-control" id="Codepostal" placeholder="Entrer votre code postal" name="Codepostal" required="required">
+                        </div>
+                        <div>
+                            <label for="number" class="form-label">@Html.LabelFor(m => m.Telephone)</label>
+                            <input type="number" class="form-control" id="Telephone" placeholder="Entrez votre téléphone" name="Telephone" required="required">
+                        </div>
+                        <div>
+                            <label for="password" class="form-label">@Html.LabelFor(m => m.Password)</label>
+                            <input type="password" class="form-control" id="Password" placeholder="Créer un mot de passe" name="Password" required="required">
+                        </div>
+                        <div>
+                            <label for="password" class="form-label">@Html.LabelFor(m => m.Password)</label>
+                            <input type="password" class="form-control" id="Password" placeholder="Confirmer le mot de passe" name="Password" required="required">
+                        </div>
+                        <div>
+                            <label for="text" class="form-label">Nom de votre entreprise</label>
+                            <input type="text" class="form-control" id="entreprise" placeholder="Entrez le nom de votre entreprise (facultatif)" name="entreprise">
+                        </div>
+                        <div>
+                            <label for="number" class="form-label">Numéro SIRET</label>
+                            <input type="number" class="form-control" id="siret" placeholder="Entrez le numéro SIRET (facultatif)" name="siret">
+                        </div>
 
-              <br>
-    <div>@Html.ActionLink("Déjà inscrit ? Veuillez vous connecter en cliquant ici", "SeConnecter")</div>
-    </div>
-    </form>
-    </fieldset>}
+                        <br />
+                        <div><button type="submit" class="btn btn-primary">Envoyer le formulaire d'inscription</button></div>
+
+                        <br>
+                        <div>@Html.ActionLink("Déjà inscrit ? Veuillez vous connecter en cliquant ici", "SeConnecter")</div>
+                    </div>
+            </form>
+        </fieldset>
+    }
 
 </body>
 </html>

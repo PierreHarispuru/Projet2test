@@ -59,6 +59,18 @@ namespace Projet2.Models
                     Id = 3,
                     Password = Dal.EncodeMD5("mdp"),
                     Role="Particulier"
+                },
+                new Profil
+                {
+                    Nom = "Admin",
+                    Prenom = "Armin",
+                    Mail = "admin@amap.fr",
+                    Telephone = 0000000000,
+                    Adresse = "Dans le code",
+                    Codepostal = 69420,
+                    Id = 5,
+                    Password = Dal.EncodeMD5("admin"),
+                    Role = "Admin"
                 }
             );
             this.Producteurs.AddRange(
@@ -95,13 +107,12 @@ namespace Projet2.Models
                 new Panier
                 {
                     QuantitePanier = 6,
-                    ProdId = 1,
+                    ProdId = 2,
                     Prix = 35,
                     Description = "Un cafard et une salade",
                     LienImage = "/Images/Users/canard.jpg"
                 }
             );
-
             this.Profils.AddRange(
             new Profil
                 {
@@ -120,7 +131,7 @@ namespace Projet2.Models
                 ClientId=3,
                 PanierId=2,
                 QtePanier=3 ,
-                Payee = false
+                Payee = true
             }
             );
 

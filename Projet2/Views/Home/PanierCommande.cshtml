@@ -1,26 +1,27 @@
 ﻿@model Projet2.Models.Commande
 @{
     Layout = "_Layout";
-    ViewBag.Title = "Votre panier";
+    ViewBag.Title = "Vos achats";
     double total = 0;
 }
 
 <div class="container mt-3">
-  <h2>Votre liste de panier</h2>    
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Votre article</th>
-        <th>Description</th>
-        <th>Quantité</th>
-        <th>Prix unitaire</th>
-        <th>Supprimer commande</th>
-      </tr>
-
-  
-  @foreach (Projet2.Models.Commande comm in ViewData["Commandes"] as List<Projet2.Models.Commande> ) {
-      @if(comm.ClientId.Equals(ViewData["Id"])){
-            @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>) {
+    <h2>Votre liste de paniers</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Votre article</th>
+                <th>Description</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Supprimer commande</th>
+            </tr>
+            @foreach (Projet2.Models.Commande comm in ViewData["Commandes"] as List<Projet2.Models.Commande>)
+            {
+                @if (comm.ClientId.Equals(ViewData["Id"]))
+                {
+                    @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>)
+                    {
                         @if (panier.Id == comm.PanierId && comm.Payee == false)
                         {
                             <tr>
@@ -30,11 +31,12 @@
                                 <td><p class="text-center">@panier.Prix</p></td>
                                 <td><button class="btn btn-primary">Supprimer</button></td>
                             </tr>
-                                total = total + panier.Prix * comm.QtePanier;
+                            total = total + panier.Prix * comm.QtePanier;
                         }
+                    }
+                }
             }
-      }
-    }</thead>
+        </thead>
     </table>
     <h3>Total : @total €</h3>
     <div>
