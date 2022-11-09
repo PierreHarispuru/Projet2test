@@ -12,37 +12,49 @@
     @using (Html.BeginForm())
     {
         <fieldset>
-            <legend>Modifier un profil : </legend>
-            @Html.LabelFor(m => Model.Nom)
-            @Html.TextBoxFor(m => Model.Nom)
-            @Html.ValidationMessageFor(m => Model.Nom)
-            <br />
-            @Html.LabelFor(m => Model.Prenom)
-            @Html.TextBoxFor(m => Model.Prenom)
-            @Html.ValidationMessageFor(m => Model.Prenom)
-            <br />
-            @Html.LabelFor(m => Model.Mail)
-            @Html.TextBoxFor(m => Model.Mail)
-            @Html.ValidationMessageFor(m => Model.Mail)
-            <br />
-            @Html.LabelFor(m => Model.Adresse)
-            @Html.TextBoxFor(m => Model.Adresse)
-            @Html.ValidationMessageFor(m => Model.Adresse)
-            <br />
-            @Html.LabelFor(m => Model.Codepostal)
-            @Html.TextBoxFor(m => Model.Codepostal)
-            @Html.ValidationMessageFor(m => Model.Codepostal)
-            <br />
-            @Html.LabelFor(m => Model.Telephone)
-            @Html.TextBoxFor(m => Model.Telephone)
-            @Html.ValidationMessageFor(m => Model.Telephone)
-            <br />
+            <legend><h4>Modifier votre profil</h4> </legend>
+            <br/>
+            <table class="table table-borderless">
+                <tr >
+                    <td>@Html.LabelFor(m => Model.Nom)</td>
+                    <td>@Html.TextBoxFor(m => Model.Nom)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Nom)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => Model.Prenom)</td>
+                    <td>@Html.TextBoxFor(m => Model.Prenom)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Prenom)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => Model.Mail)</td>
+                    <td>@Html.TextBoxFor(m => Model.Mail)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Mail)</td>
+                </tr>
+                <tr>            
+                    <td>@Html.LabelFor(m => Model.Adresse)</td>
+                    <td>@Html.TextBoxFor(m => Model.Adresse)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Adresse)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => Model.Codepostal)</td>
+                    <td>@Html.TextBoxFor(m => Model.Codepostal)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Codepostal)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => Model.Telephone)</td>
+                    <td>@Html.TextBoxFor(m => Model.Telephone)</td>
+                    <td>@Html.ValidationMessageFor(m => Model.Telephone)</td>
+
+                </tr>
+
+            </table>
             <div><p><input type="hidden" id="id" name="id" value="@Model.Id"></p></div>
             <div><p><input type="hidden" id="Role" name="Role" value="@Model.Role"></p></div>
             <div><p><input type="hidden" id="Password" name="Password" value="@Model.Password"></p></div>
-            <input type="submit" value="Modifier" />
-        </fieldset>
+        
 
+            <input type="submit" class="btn btn-primary" value="Modifier" />
+        </fieldset>
     }
 </body>
 </html>
