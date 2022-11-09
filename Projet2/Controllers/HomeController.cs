@@ -39,6 +39,10 @@ namespace Projet2.ViewModels
                 return View(profil);
             }
         }
+        public IActionResult PanneauAdmin()
+        {
+            return View();
+        }
 
         public IActionResult Index()
         {
@@ -112,9 +116,7 @@ namespace Projet2.ViewModels
         [HttpPost]
         public IActionResult SignIn(Profil profil, int inscriptiongroup, string entreprise, Int64 siret)
         {
-
-            if (!ModelState.IsValid)
-            return View(profil);
+            profil.Password=Dal.EncodeMD5(profil.Password);
 
                 using (Dal dal = new Dal())
                 {
@@ -296,16 +298,6 @@ namespace Projet2.ViewModels
             }
         }
 
-        //public IActionResult Remove(int id)
-        //{
-        //    var cartId = SessionHelper.GetObjectFromJson<int>(HttpContext.Session, "cartId");
-        //    new Dal().RemoveItem(cartId, id);
-        //    return RedirectToAction("Index");
-        //}
-
-
-
-
         [HttpGet]
         public IActionResult Paiement()
         {
@@ -325,9 +317,6 @@ namespace Projet2.ViewModels
         {
             return View();
         }
-
-
-        
 
         [HttpGet]
         public IActionResult ModifierProfil()
@@ -380,6 +369,63 @@ namespace Projet2.ViewModels
                     return View();
                 }
             }
+        }
+        public IActionResult AdminCommandes()
+        {
+            if (HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value.Equals("Admin")) {
+                using (Dal dal = new Dal())
+                {
+                    ViewData["Profils"] = dal.GetProfils();
+                    ViewData["Commandes"] = dal.GetCommandes();
+                    ViewData["Paniers"] = dal.GetPaniers();
+                    return View();
+                }
+            }
+            else
+            { return View("Error"); }
+        }
+        public IActionResult AdminProfils()
+        {
+            if (HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value.Equals("Admin"))
+            {
+                using (Dal dal = new Dal())
+                {
+                    ViewData["Profils"] = dal.GetProfils();
+                    return View();
+                }
+            }
+            else
+            { return View("Error"); }
+        }
+        public IActionResult AdminPaniers()
+        {
+            if (HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value.Equals("Admin"))
+            {
+                using (Dal dal = new Dal())
+                {
+                    ViewData["Profils"] = dal.GetProfils();
+                    ViewData["Paniers"] = dal.GetPaniers();
+                    return View();
+                }
+            }
+            else
+            { return View("Error"); }
+        }
+        public IActionResult ProducteurHistorique()
+        {
+            if (HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value.Equals("Producteur"))
+            {
+                using (Dal dal = new Dal())
+                {
+                    ViewData["Id"] = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid).Value);
+                    ViewData["Profils"] = dal.GetProfils();
+                    ViewData["Commandes"] = dal.GetCommandes();
+                    ViewData["Paniers"] = dal.GetPaniers();
+                    return View();
+                }
+            }
+            else
+            { return View("Error"); }
         }
     }
 }

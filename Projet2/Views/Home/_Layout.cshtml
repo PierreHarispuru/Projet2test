@@ -31,6 +31,7 @@
     String role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value;
     Boolean isNotProducteur = !role.Equals("Producteur");
     Boolean isNotBuyer = !(role.Equals("Particulier") || role.Equals("Entreprise"));
+    Boolean isNotAdmin = !role.Equals("Admin");
 
 
     <div class="container-fluid p-3 bg-success text-white">
@@ -39,7 +40,6 @@
                 <div id="text-align">
                     <div class="row">
                         <div class="col">@Html.ActionLink("Accueil", "Index", "Home",null, new { @class="nav-link"} )</div>
-                        @*<div class="col">@Html.ActionLink("Évènement à venir", "Evenement", "Home",null, new { @class="nav-link"})</div>*@
                         <div class="col" hidden=@isNotBuyer>@Html.ActionLink("Adhérer", "Adherer", "Home",null, new { @class="nav-link"})</div>
                         <div class="col">@Html.ActionLink("Paniers de la semaine", "PanierDeLaSemaine", "Home",null, new { @class="nav-link"})</div>
                         <div class="col">@Html.ActionLink("FAQ", "Faq", "Home",null, new { @class="nav-link"})</div>
@@ -47,6 +47,8 @@
                         <div class="col">@Html.ActionLink("Mon compte", "LayoutSeConnecter", "Home",null, new { @class="nav-link"})</div>
                         <div class="col" hidden=@isNotBuyer>@Html.ActionLink("Vos Achats", "PanierCommande", "Home",null, new { @class="nav-link"})</div>
                         <div class="col" hidden=@isNotProducteur>@Html.ActionLink("Création de panier", "ProducteurCreationPanier", "Home",null, new { @class="nav-link"} )</div>
+                        <div class="col" hidden=@isNotProducteur>@Html.ActionLink("Historique", "ProducteurHistorique", "Home",null, new { @class="nav-link"} )</div>
+                        <div class="col" hidden=@isNotAdmin>@Html.ActionLink("Panneau admin", "PanneauAdmin", "Home",null, new { @class="nav-link"})</div>
                         <div class="col">@Html.ActionLink("Déconnexion", "Deconnexion", "Home",null, new {@class="nav-link"})</div>
                     </div>
                 </div>
@@ -75,7 +77,6 @@
                 <div id="text-align">
                     <div class="row">
                             <div class="col">@Html.ActionLink("Accueil", "Index", "Home",null, new { @class="nav-link"} )</div>
-                            @*<div class="col">@Html.ActionLink("Évènement à venir", "Evenement", "Home",null, new { @class="nav-link"})</div>*@
                             <div class="col">@Html.ActionLink("FAQ", "Faq", "Home",null, new { @class="nav-link"})</div>
                             <div class="col">@Html.ActionLink("Nous contacter", "Contact", "Home",null, new { @class="nav-link"})</div>
                             <div class="col">@Html.ActionLink("Se connecter", "Index2", "Home",null, new { @class="nav-link"})</div>

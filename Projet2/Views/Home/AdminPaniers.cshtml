@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Profils";
+}
+
+
+<div class="container mt-3">
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Producteur</th>
+                <th>Quantité disponible</th>
+                <th>Prix unitaire</th>
+                <th>Modifier</th>
+            </tr>
+            @foreach (Projet2.Models.Panier panier in ViewData["Paniers"] as List<Projet2.Models.Panier>)
+            {
+                <tr>
+                    <td><img class="img-thumbnail" src="@panier.LienImage" width="100" height="100"></td>
+                    <td>@panier.Description</td>
+                    @foreach (Projet2.Models.Profil profil in ViewData["Profils"] as List<Projet2.Models.Profil>)
+                    {
+                        @if(panier.ProdId==profil.Id){
+                            <td>@profil.Prenom @profil.Nom</td>
+                        }   
+                    }
+                    <td>@panier.ProdId</td>
+                    <td>@panier.QuantitePanier</td>
+                    <td>@panier.Prix</td>
+                    <td><button class="btn btn-primary">Modifier</button></td>
+                </tr>
+            }
+        </thead>
+    </table>
+</div>
