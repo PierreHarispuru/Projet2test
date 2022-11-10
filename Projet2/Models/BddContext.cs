@@ -45,15 +45,15 @@ namespace Projet2.Models
                     Telephone = 0102030405,
                     Adresse = "34 chemin du puis",
                     Codepostal = 75000,
-                    Id = 1,
+                    Id = 4,
                     Password=Dal.EncodeMD5("mdp"),
                     Role="Entreprise"
                 },
                 new Profil
                 {
                     Nom = "LeProd",
-                    Prenom = "Mylene",
-                    Mail = "mymy@gmail.fr",
+                    Prenom = "Vincent",
+                    Mail = "vivi@gmail.com",
                     Telephone = 0405060708,
                     Adresse = "648 rue de la paix",
                     Codepostal = 75009,
@@ -63,12 +63,24 @@ namespace Projet2.Models
                 },
                 new Profil
                 {
+                    Nom = "Courgette",
+                    Prenom = "Mylene",
+                    Mail = "courgette@gmail.com",
+                    Telephone = 0405060708,
+                    Adresse = "25 rue de l'église",
+                    Codepostal = 38000,
+                    Id = 5,
+                    Password = Dal.EncodeMD5("mdp"),
+                    Role = "Producteur"
+                },
+                new Profil
+                {
                     Nom = "Lachat",
-                    Prenom = "Georges",
-                    Mail = "george@gmail.fr",
+                    Prenom = "Paul",
+                    Mail = "lachat@gmail.com",
                     Telephone = 0607080910,
-                    Adresse = "58 rue de chez Georges",
-                    Codepostal = 75002,
+                    Adresse = "58 rue de chez Paul",
+                    Codepostal = 75016,
                     Id = 3,
                     Password = Dal.EncodeMD5("mdp"),
                     Role="Particulier"
@@ -77,11 +89,11 @@ namespace Projet2.Models
                 {
                     Nom = "Admin",
                     Prenom = "Armin",
-                    Mail = "admin@amap.fr",
-                    Telephone = 0000000000,
-                    Adresse = "Dans le code",
+                    Mail = "admin@amap.com",
+                    Telephone = 631354019,
+                    Adresse = "42 avenue Java",
                     Codepostal = 69420,
-                    Id = 5,
+                    Id = 1,
                     Password = Dal.EncodeMD5("admin"),
                     Role = "Admin"
                 }
@@ -109,45 +121,84 @@ namespace Projet2.Models
             this.Paniers.AddRange(
                 new Panier
                 {
-                    QuantitePanier=3,
-                    ProdId=1,
+                    QuantitePanier=30,
+                    ProdId=2,
                     Prix=28,
-                    Description="Trois patates et deux carottes",
-                    LienImage= "/Images/Users/canard.jpg"
+                    Description="250g tomates, 300g poivrons, 500g PDT, 250g carottes, 1 salade, 2 courgettes, 1 concombre",
+                    LienImage="/Images/Users/panier1.jpg"
                 }
             );
             this.Paniers.AddRange(
                 new Panier
                 {
-                    QuantitePanier = 6,
-                    ProdId = 2,
-                    Prix = 35,
-                    Description = "Un cafard et une salade",
-                    LienImage = "/Images/Users/canard.jpg"
+                    QuantitePanier=64,
+                    ProdId=2,
+                    Prix=35,
+                    Description="600g poireaux, 600g endives, 500g PDT, 500g oignons, basilic",
+                    LienImage="/Images/Users/panier2.jpg"
                 }
             );
-            this.Profils.AddRange(
-            new Profil
+            this.Paniers.AddRange(
+                new Panier
                 {
-                Nom="Toto",
-                Prenom="Tartempion",
-                Id = 4,
-                Mail = "toto@gmail.com",
-                Password = Dal.EncodeMD5("ppppp")
+                    QuantitePanier = 64,
+                    ProdId=5,
+                    Prix=35,
+                    Description="1 salade, 500g PDT, 500g carottes, 1 artichaut, 500g radis",
+                    LienImage="/Images/Users/panier3.jpg"
                 }
             );
-           
+            this.Paniers.AddRange(
+                new Panier
+                {
+                    QuantitePanier = 56,
+                    ProdId = 5,
+                    Prix = 26,
+                    Description = "1 salade, 600g tomates, 1 chou-fleur, 500g carottes, 300g PDT, 100g myrtilles, basilic",
+                    LienImage = "/Images/Users/panier5.jpg"
+                }
+            );
             this.Commandes.AddRange(
             new Commande
             {
                 Id = 1,
-                ClientId=3,
-                PanierId=2,
-                QtePanier=3 ,
+                ClientId = 3,
+                PanierId = 2,
+                QtePanier = 3,
                 Payee = true
             }
             );
-
+            this.Commandes.AddRange(
+            new Commande
+            {
+                Id = 2,
+                ClientId = 3,
+                PanierId = 1,
+                QtePanier = 6,
+                Payee = false
+            }
+            );
+            this.Commandes.AddRange(
+            new Commande
+            {
+                Id = 3,
+                ClientId = 3,
+                PanierId = 1,
+                QtePanier = 1,
+                Payee = false
+            }
+            );
+            this.Commandes.AddRange(
+            new Commande
+            {
+                Id = 4,
+                ClientId = 4,
+                PanierId = 3,
+                QtePanier = 20,
+                Payee = true
+            }
+            );
+            
             this.SaveChanges();
         }
     }

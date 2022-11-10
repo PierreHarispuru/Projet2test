@@ -34,13 +34,13 @@
     Boolean isNotAdmin = !role.Equals("Admin");
 
 
-    <div class="container-fluid p-3 bg-success text-white">
+        <div class="container-fluid p-3 bg-success text-white">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <div id="text-align">
                     <div class="row">
                         <div class="col">@Html.ActionLink("Accueil", "Index", "Home",null, new { @class="nav-link"} )</div>
-                        <div class="col" hidden=@isNotBuyer>@Html.ActionLink("Adhérer", "Adherer", "Home",null, new { @class="nav-link"})</div>
+                        <div class="col">@Html.ActionLink("Adhérer", "Adherer", "Home",null, new { @class="nav-link"})</div>
                         <div class="col">@Html.ActionLink("Paniers de la semaine", "PanierDeLaSemaine", "Home",null, new { @class="nav-link"})</div>
                         <div class="col">@Html.ActionLink("FAQ", "Faq", "Home",null, new { @class="nav-link"})</div>
                         <div class="col">@Html.ActionLink("Nous contacter", "Contact", "Home",null, new { @class="nav-link"})</div>
@@ -71,12 +71,13 @@
     }
     else
     {
-    <div class="container-fluid p-3 bg-success text-white">
+        <div class="container-fluid p-3 bg-success text-white">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <div id="text-align">
                     <div class="row">
                             <div class="col">@Html.ActionLink("Accueil", "Index", "Home",null, new { @class="nav-link"} )</div>
+                            <div class="col">@Html.ActionLink("Paniers de la semaine", "PanierDeLaSemaine", "Home",null, new { @class="nav-link"})</div>
                             <div class="col">@Html.ActionLink("FAQ", "Faq", "Home",null, new { @class="nav-link"})</div>
                             <div class="col">@Html.ActionLink("Nous contacter", "Contact", "Home",null, new { @class="nav-link"})</div>
                             <div class="col">@Html.ActionLink("Se connecter", "Index2", "Home",null, new { @class="nav-link"})</div>
@@ -93,7 +94,7 @@
         <br />
         </div>
     </div>
-    <footer class="footer mt-auto py-3 bg-success">
+        <footer class="footer mt-auto fixed-bottom py-3 bg-success">
         <div class="container">
             <span class="text-light">&copy; @DateTime.Now.Year - De magnifiques courgettes tout près de chez vous</span>
         </div>
