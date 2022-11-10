@@ -54,7 +54,7 @@
                         </div>
                         <div>
                             <label for="number" class="form-label">@Html.LabelFor(m => m.Telephone)</label>
-                            <input type="number" class="form-control" id="Telephone" placeholder="Entrez votre téléphone" name="Telephone" required="required">
+                            <input type="number" class="form-control" id="Telephone" placeholder="+33" name="Telephone" required="required">
                         </div>
                         <div>
                             <label for="password" class="form-label">@Html.LabelFor(m => m.Password)</label>
@@ -76,7 +76,7 @@
                         <br />
                         <div><button type="submit" class="btn btn-primary">Envoyer le formulaire d'inscription</button></div>
                         <br>
-                        <div>@Html.ActionLink("Déjà inscrit ? Veuillez vous connecter en cliquant ici", "SeConnecter")</div>
+                        <div>@Html.ActionLink("Déjà inscrit ? Veuillez vous connecter en cliquant ici", "Index2")</div>
                     </div>
             </form>
         </fieldset>
